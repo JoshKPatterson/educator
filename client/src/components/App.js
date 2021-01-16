@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 
 // Import Components
+import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 import MainMenu from "./sections/MainMenu/MainMenu";
 import Math from "./sections/Math/Math";
 import Geography from "./sections/Geography/Geography";
@@ -10,9 +11,6 @@ import Login from "./auth/Login/Login";
 import Logout from "./auth/Logout/Logout";
 import Register from "./auth/Register/Register";
 
-import { useHistory } from "react-router-dom";
-
-
 // Import Custom Hooks
 import { requireAuth } from "../customHooks";
 
@@ -20,7 +18,6 @@ import { requireAuth } from "../customHooks";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // Import Redux
-import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authActions";
 import { connect } from "react-redux";
@@ -28,30 +25,26 @@ import { connect } from "react-redux";
 // Import Styles
 import "./App.scss";
 
-const App = (props) => {
+const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
 
   return (
-    // <Provider store={store}>
     <div className="App">
       <Router>
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={MainMenu}
-          />
+          {/* Auth Routes */}
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
-          <Route path="/math" component={Math} />
-          <Route path="/geography" component={Geography} />
+          {/* Main Routes */}
+          <PrivateRoute exact path="/" component={MainMenu} />
+          <PrivateRoute path="/math" component={Math} />
+          <PrivateRoute path="/geography" component={Geography} />
         </Switch>
       </Router>
     </div>
-    // </Provider>
   );
 };
 
