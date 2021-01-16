@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { login } from "../../../actions/authActions";
 
 // Import Routing
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
@@ -22,6 +22,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState(null);
+  const [redirect, setRedirect] = useState(null);
 
   let history = useHistory();
 
@@ -41,20 +42,17 @@ const Login = (props) => {
         setErrMessage(null);
       }
     }
-    if (isAuthenticated) {
-      console.log("authenticated");
-      // history.push('/')
-    }
   }, [error]);
-
-  // Check For Authenticated
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("authenticated");
-      history.push('/')
+      setRedirect(true);
+    } else if (isAuthenticated === false) {
+      setRedirect(false);
     }
-  });
+  }, [isAuthenticated]);
+
+  // Check For Authenticated
 
   const onChange = (e) => {
     switch (e.target.id) {
@@ -69,6 +67,8 @@ const Login = (props) => {
     }
   };
 
+  // Send Login Info On Submit
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -80,6 +80,8 @@ const Login = (props) => {
     // Attempt To Login
     props.login(user);
   };
+
+  // Content For Render
 
   const content = () => {
     return (
@@ -111,7 +113,27 @@ const Login = (props) => {
       </div>
     );
   };
-  return <MainCard content={content()} />;
+
+  const authCheck = () => {
+    switch (redirect) {
+      case true:
+        return <Redirect to="/" />;
+        break;
+      case false:
+        return <MainCard content={content()} />;
+        break;
+      case null:
+        return null;
+        break;
+      default:
+        return null;
+        break;
+    }
+  };
+  return (
+    // redirect ? <Redirect to='/'/> :<MainCard content={content()}/>
+    authCheck()
+  );
 };
 
 const mapStateToProps = (state) => ({

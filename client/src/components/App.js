@@ -33,15 +33,6 @@ const App = (props) => {
     store.dispatch(loadUser());
   }, []);
 
-  // const checkLogin = requireAuth(props.isAuthenticated);
-
-  const requireAuth = (isAuthenticated) => {
-    let history = useHistory();
-    if(!isAuthenticated){
-      history.push('/login')
-    }
-  }
-
   return (
     // <Provider store={store}>
     <div className="App">
@@ -51,7 +42,6 @@ const App = (props) => {
             exact
             path="/"
             component={MainMenu}
-            onEnter={requireAuth(props.isAuthenticated)}
           />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
