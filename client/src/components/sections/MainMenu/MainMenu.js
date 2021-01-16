@@ -12,7 +12,7 @@ const MainMenu = ({ user }) => {
     return (
       <div className="mainMenu">
         <Header sectionName="Main Menu" />
-        <h2>{ user ? `Welcome ${user.name}` : ''}</h2>
+        <h2>Welcome {user.name}</h2>
         <Link to="/math" className="link">
           Math
         </Link>
