@@ -6,36 +6,38 @@ import { connect } from "react-redux";
 import { login } from "../../../actions/authActions";
 
 // Import Routing
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
 
 // Import Custom Hooks
-import { usePrevious } from "../../../customHooks";
+import { usePrevious, authCheck } from "../../../customHooks";
 
 // Import Styles
 import "./Login.scss";
 
+// Login Component
 const Login = (props) => {
+
+  // State Setup
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState(null);
   const [redirect, setRedirect] = useState(null);
 
-  let history = useHistory();
-
+  // Destructuring Props
   const { error, isAuthenticated } = props;
 
   // Getting Ref To Initial/Previous Error Message
-
   const prevError = usePrevious(error);
 
+  // Compare New Error With Ref Error
   useEffect(() => {
     if (error !== prevError) {
-      // Check For Register Error
 
+      // Check For Login Error
       if (error.id === "LOGIN_FAIL") {
         setErrMessage(error.msg.msg);
       } else {
@@ -44,6 +46,7 @@ const Login = (props) => {
     }
   }, [error]);
 
+  // Check If Logged In For Redirect
   useEffect(() => {
     if (isAuthenticated) {
       setRedirect(true);
@@ -52,8 +55,7 @@ const Login = (props) => {
     }
   }, [isAuthenticated]);
 
-  // Check For Authenticated
-
+  // Update State With Login Info
   const onChange = (e) => {
     switch (e.target.id) {
       case "email":
@@ -68,10 +70,10 @@ const Login = (props) => {
   };
 
   // Send Login Info On Submit
-
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // Create User Object
     const user = {
       email,
       password,
@@ -81,8 +83,7 @@ const Login = (props) => {
     props.login(user);
   };
 
-  // Content For Render
-
+  // Content For Component
   const content = () => {
     return (
       <div className="login">
@@ -107,35 +108,15 @@ const Login = (props) => {
           />
           <button type="submit">Login</button>
         </form>
-        <button onClick={() => console.log(`Auth? ${isAuthenticated}`)}>
-          Auth?
-        </button>
       </div>
     );
   };
 
-  const authCheck = () => {
-    switch (redirect) {
-      case true:
-        return <Redirect to="/" />;
-        break;
-      case false:
-        return <MainCard content={content()} />;
-        break;
-      case null:
-        return null;
-        break;
-      default:
-        return null;
-        break;
-    }
-  };
-  return (
-    // redirect ? <Redirect to='/'/> :<MainCard content={content()}/>
-    authCheck()
-  );
+  // Render Component
+  return authCheck(redirect, <Redirect to="/" />, <MainCard content={content()} />);
 };
 
+// Map Error And Auth Props
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,

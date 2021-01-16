@@ -6,43 +6,39 @@ import { connect } from "react-redux";
 import { registerUser } from "../../../actions/authActions";
 
 // Import Routing
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
 
 // Import Custom Hooks
-import { usePrevious } from '../../../customHooks'
+import { usePrevious, authCheck } from '../../../customHooks'
 
 // Import Styles
 import "./Register.scss";
 
+// Register Component
 const Register = (props) => {
 
   // State Setup
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState(null);
+  const [redirect, setRedirect] = useState(null);
 
-  let history = useHistory();
-
+  // Destructuring Props
   const { error, isAuthenticated } = props;
 
   // Getting Ref To Initial/Previous Error Message
-
   const prevError = usePrevious(error);
 
+  // Compare New Error With Ref Error
   useEffect(() => {
-
-    // Compare New Error With Old Error
-
     if (error !== prevError) {
 
       // Check For Register Error
-  
       if (error.id === "REGISTER_FAIL") {
         setErrMessage(error.msg.msg);
       } else {
@@ -51,17 +47,16 @@ const Register = (props) => {
     }
   }, [error])
 
-  // Check For Authenticated
-
+  // Check If Logged In For Redirect
   useEffect(() => {
-    if(isAuthenticated){
-      console.log('authenticated')
+    if (isAuthenticated) {
+      setRedirect(true);
+    } else if (isAuthenticated === false) {
+      setRedirect(false);
     }
-    // history.push('/RegisterSuccess')
   }, [isAuthenticated])
 
-  // State Changes From Text Inputs
-
+// Update State With Registration Info
   const onChange = (e) => {
     switch (e.target.id) {
       case "name":
@@ -78,8 +73,7 @@ const Register = (props) => {
     }
   };
 
-  // Function For Form Submission
-
+  // Send Registration Info On Submit
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -95,12 +89,11 @@ const Register = (props) => {
   };
 
   // Content For Component
-
   const content = () => {
     return (
       <div className="register">
         <Header sectionName="Register" />
-        { errMessage ? <p>{errMessage}</p> : null}
+        {errMessage ? <p>{errMessage}</p> : null}
         <form onSubmit={onSubmit}>
           <label htmlFor="name">Name</label>
           <input
@@ -131,9 +124,10 @@ const Register = (props) => {
       </div>
     );
   };
-  return <MainCard content={content()} />;
+  return authCheck(redirect, <Redirect to="/" />, <MainCard content={content()} />);
 };
 
+// Map Error And Auth Props
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,

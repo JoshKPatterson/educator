@@ -1,9 +1,6 @@
-import { useEffect, useRef } from "react";
+import { React, useEffect, useRef } from "react";
 
-import { useHistory } from "react-router-dom";
-
-
-
+// Used To Cache Previous Error For Future Comparison
 export const usePrevious = (value) => {
   const ref = useRef();
   useEffect(() => {
@@ -12,9 +9,15 @@ export const usePrevious = (value) => {
   return ref.current;
 };
 
-export const requireAuth = (isAuthenticated) => {
-  let history = useHistory();
-  if(!isAuthenticated){
-    history.push('/login')
+// Used To Redirect To Main Menu If Logged In
+export const authCheck = (redirect, target, bypass) => {
+  switch(redirect){
+    case true:
+      return target;
+    case false:
+      return bypass;
+    case null:
+    default:
+      return null;
   }
 }
