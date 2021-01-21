@@ -1,0 +1,23 @@
+@import '../../../utilities/variables';
+
+.buttonProp {
+  background-color: white;
+  border: 3px solid $mainPurple;
+  border-radius: 15px;
+  padding: 0;
+  a {
+    text-align: center;
+    text-decoration: none;
+    color: $mainPurple;
+    font-weight: bold;
+    display: block;
+    font-size: 2rem;
+    margin: 0 1rem;
+  }
+  &:hover{
+    background-color: $mainPurple;
+    a {
+      color: white;
+    }
+  }
+}

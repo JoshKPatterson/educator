@@ -1,0 +1,9 @@
+// Makes target full height and width of parent - use for 'section' components
+@mixin full-hw {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin horizontal-center {
+  margin: 0 auto;
+}
