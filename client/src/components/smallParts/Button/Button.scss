@@ -2,20 +2,22 @@
 
 .buttonProp {
   background-color: white;
-  border: 3px solid $mainPurple;
-  border-radius: 15px;
-  padding: 0;
+  border: 2px solid $mainColor;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  ;
   a {
     text-align: center;
     text-decoration: none;
-    color: $mainPurple;
+    color: $mainColor;
     font-weight: bold;
     display: block;
-    font-size: 2rem;
-    margin: 0 1rem;
+    font-size: 1.5rem;
+    margin: 0.25rem 1rem;
+    font-family: $mainFont;
   }
   &:hover{
-    background-color: $mainPurple;
+    background-color: $mainColor;
     a {
       color: white;
     }

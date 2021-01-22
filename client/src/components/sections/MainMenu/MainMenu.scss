@@ -1,18 +1,30 @@
 @import '../../../utilities/mixins';
+@import '../../../utilities/variables';
 
 .mainMenu {
   @include full-hw;
   // @include horizontal-center;
   text-align: center;
+
+  h2 {
+    font-family: $mainFont;
+  }
 }
 
 .mainMenu__userName {
-
+  color: $secondaryColor;
 }
 
 .mainMenu_buttonContainer {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
   @include horizontal-center;
+  button {
+    margin-bottom: 0.75rem;
+    min-width: 75%;
+    &:nth-last-of-type(1){
+      margin-bottom: 0;
+    }
+  }
 }

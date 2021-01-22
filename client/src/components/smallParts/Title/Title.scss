@@ -1,8 +1,8 @@
-@import '../../../utilities/mixins';
-@import '../../../utilities/variables';
-
+@import "../../../utilities/mixins";
+@import "../../../utilities/variables";
 
 .title {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  color: $mainPurple;
+  font-family: $titleFont;
+  color: $mainColor;
+  font-size: 1.25rem;
 }
