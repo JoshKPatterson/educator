@@ -1,7 +1,7 @@
-@import '../../../utilities/mixins';
-@import '../../../utilities/variables';
+@import "../../../utilities/mixins";
+@import "../../../utilities/variables";
 
-.mainMenu {
+.sectionNavigator {
   @include full-hw;
   // @include horizontal-center;
   text-align: center;
@@ -12,11 +12,7 @@
   }
 }
 
-.mainMenu__userName {
-  color: $secondaryColor;
-}
-
-.mainMenu_buttonContainer {
+.sectionNavigator__buttonContainer {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
