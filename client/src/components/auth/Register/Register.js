@@ -6,21 +6,23 @@ import { connect } from "react-redux";
 import { registerUser } from "../../../actions/authActions";
 
 // Import Routing
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
+import Button from "../../smallParts/Button/Button";
+import Title from "../../smallParts/Title/Title";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Custom Hooks
-import { usePrevious, authCheck } from '../../../customHooks'
+import { usePrevious, authCheck } from "../../../customHooks";
 
 // Import Styles
 import "./Register.scss";
 
 // Register Component
 const Register = (props) => {
-
   // State Setup
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,15 +39,14 @@ const Register = (props) => {
   // Compare New Error With Ref Error
   useEffect(() => {
     if (error !== prevError) {
-
       // Check For Register Error
       if (error.id === "REGISTER_FAIL") {
         setErrMessage(error.msg.msg);
       } else {
-        setErrMessage(null)
+        setErrMessage(null);
       }
     }
-  }, [error])
+  }, [error]);
 
   // Check If Logged In For Redirect
   useEffect(() => {
@@ -54,9 +55,9 @@ const Register = (props) => {
     } else if (isAuthenticated === false) {
       setRedirect(false);
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
-// Update State With Registration Info
+  // Update State With Registration Info
   const onChange = (e) => {
     switch (e.target.id) {
       case "name":
@@ -89,12 +90,15 @@ const Register = (props) => {
   };
 
   // Content For Component
+  // Written Outside Return Statement For Clarity With Auth Check
   const content = () => {
     return (
       <div className="register">
+        <Title />
         <Header sectionName="Register" />
         {errMessage ? <p>{errMessage}</p> : null}
-        <form onSubmit={onSubmit}>
+        <ButtonContainer>
+        <form onSubmit={onSubmit} className='register__form'>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -119,12 +123,20 @@ const Register = (props) => {
             placeholder="Password"
             onChange={onChange}
           />
-          <button type="submit">Register</button>
+          <Button type="submit"><p>Register</p></Button>
+          <Button>
+              <Link to='/login'>Existing User</Link>
+            </Button>
         </form>
+        </ButtonContainer>
       </div>
     );
   };
-  return authCheck(redirect, <Redirect to="/" />, <MainCard content={content()} />);
+  return authCheck(
+    redirect,
+    <Redirect to="/" />,
+    <MainCard>{content()}</MainCard>
+  );
 };
 
 // Map Error And Auth Props

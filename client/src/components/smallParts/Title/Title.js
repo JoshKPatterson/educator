@@ -1,6 +1,10 @@
+// Import React
 import React from "react";
+
+// Import Styles
 import "./Title.scss";
 
+// Title Component
 const Title = () => {
   return (
     <div className="title">

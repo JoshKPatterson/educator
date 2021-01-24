@@ -1,3 +1,4 @@
+// Import React
 import { React, useEffect, useRef } from "react";
 
 // Used To Cache Previous Error For Future Comparison
@@ -11,7 +12,7 @@ export const usePrevious = (value) => {
 
 // Used To Redirect To Main Menu If Logged In
 export const authCheck = (redirect, target, bypass) => {
-  switch(redirect){
+  switch (redirect) {
     case true:
       return target;
     case false:
@@ -20,4 +21,4 @@ export const authCheck = (redirect, target, bypass) => {
     default:
       return null;
   }
-}
+};

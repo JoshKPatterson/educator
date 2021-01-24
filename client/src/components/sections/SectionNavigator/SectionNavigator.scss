@@ -4,9 +4,7 @@
 .sectionNavigator {
   @include full-hw;
   // @include horizontal-center;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  @include all-center-with-column;
   h2 {
     font-family: $mainFont;
   }

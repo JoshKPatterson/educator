@@ -11,9 +11,16 @@ import { Redirect } from "react-router-dom";
 // Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
+import Button from "../../smallParts/Button/Button";
+import ReturnToMenu from "../../smallParts/ReturnToMenu/ReturnToMenu";
+import Title from "../../smallParts/Title/Title";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Custom Hooks
 import { authCheck } from "../../../customHooks";
+
+// Import Styles
+import "./Logout.scss";
 
 const Logout = (props) => {
   // State Setup
@@ -32,19 +39,26 @@ const Logout = (props) => {
   }, [isAuthenticated]);
 
   // Content For Component
+  // Written Outside Return Statement For Clarity With Auth Check
   const content = () => {
     return (
       <div className="logout">
+        <Title />
         <Header sectionName="Logout" />
-        <button onClick={logout}>Logout</button>
+        <ButtonContainer>
+          <Button action={logout}>
+            <p>Logout</p>
+          </Button>
+        </ButtonContainer>
+        <ReturnToMenu />
       </div>
     );
   };
-  // return <MainCard content={content()} />;
+
   return authCheck(
     redirect,
     <Redirect to="/" />,
-    <MainCard content={content()} />
+    <MainCard>{content()}</MainCard>
   );
 };
 

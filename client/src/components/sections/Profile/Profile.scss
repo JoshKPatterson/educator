@@ -1,10 +1,7 @@
 @import "../../../utilities/mixins";
 
-.register {
+.profile {
   @include full-hw;
   @include all-center-with-column;
-}
-
-.register__form {
-  @include all-center-with-column;
+  justify-content: space-between;
 }

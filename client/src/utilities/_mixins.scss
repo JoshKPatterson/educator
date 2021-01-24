@@ -7,3 +7,9 @@
 @mixin horizontal-center {
   margin: 0 auto;
 }
+
+@mixin all-center-with-column {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}

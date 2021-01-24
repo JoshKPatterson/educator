@@ -1,12 +1,8 @@
-import React from 'react'
-import './MainCard.scss'
+import React from "react";
+import "./MainCard.scss";
 
-const MainCard = (props) => {
-  return (
-    <div className='mainCard'>
-      {props.content}
-    </div>
-  )
-}
+const MainCard = ({ children }) => {
+  return <div className="mainCard">{children}</div>;
+};
 
-export default MainCard
+export default MainCard;

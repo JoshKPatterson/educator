@@ -1,48 +1,49 @@
+// Import React
 import React, { useState } from "react";
+
+// Import Redux
+import { connect } from "react-redux";
+
+// Import Routing
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
 import Title from "../../smallParts/Title/Title";
 import Button from "../../smallParts/Button/Button";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
-import { connect } from "react-redux";
-
+// Import Styles
 import "./MainMenu.scss";
 
+// MainMenu Component
 const MainMenu = ({ user }) => {
-  const content = () => {
-    return (
+  return (
+    <MainCard>
       <div className="mainMenu">
         <Title />
         <Header sectionName="Main Menu" />
-
         <h2>
           Welcome <span className="mainMenu__userName">{user.name}</span>
         </h2>
-        <div className="mainMenu_buttonContainer">
+        <ButtonContainer>
           <Button>
-            <Link to='/sections'>Study</Link>
-          </Button>
-          {/* <Button>
-            <Link to="/math">Math</Link>
+            <Link to="/sections">Study</Link>
           </Button>
           <Button>
-            <Link to="/geography">Geography</Link>
-          </Button> */}
-          <Button>
-            <Link to='/profile'>Profile</Link>
+            <Link to="/profile">Profile</Link>
           </Button>
           <Button>
             <Link to="/logout">Logout</Link>
           </Button>
-        </div>
+        </ButtonContainer>
       </div>
-    );
-  };
-
-  return <MainCard content={content()} />;
+    </MainCard>
+  );
 };
 
+// Map Auth Prop
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });

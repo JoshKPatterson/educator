@@ -10,7 +10,8 @@ import Header from "./smallParts/Header/Header";
 import Login from "./auth/Login/Login";
 import Logout from "./auth/Logout/Logout";
 import Register from "./auth/Register/Register";
-import SectionNavigator from './sections/SectionNavigator/SectionNavigator'
+import SectionNavigator from "./sections/SectionNavigator/SectionNavigator";
+import Profile from "./sections/Profile/Profile";
 
 // Import Custom Hooks
 import { requireAuth } from "../customHooks";
@@ -43,7 +44,8 @@ const App = () => {
           <PrivateRoute exact path="/" component={MainMenu} />
           <PrivateRoute path="/math" component={Math} />
           <PrivateRoute path="/geography" component={Geography} />
-          <PrivateRoute path='/sections' component={SectionNavigator} />
+          <PrivateRoute path="/sections" component={SectionNavigator} />
+          <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </Router>
     </div>

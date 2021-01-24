@@ -1,12 +1,12 @@
-@import '../../../utilities/variables';
+@import "../../../utilities/variables";
 
 .buttonProp {
   background-color: white;
   border: 2px solid $mainColor;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  ;
-  a {
+  a,
+  p {
     text-align: center;
     text-decoration: none;
     color: $mainColor;
@@ -16,10 +16,12 @@
     margin: 0.25rem 1rem;
     font-family: $mainFont;
   }
-  &:hover{
+  &:hover {
     background-color: $mainColor;
-    a {
+    a,
+    p {
       color: white;
+      cursor: pointer;
     }
   }
 }

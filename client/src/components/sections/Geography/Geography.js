@@ -1,18 +1,19 @@
-import React from 'react'
-import Header from '../../smallParts/Header/Header';
-import MainCard from '../../smallParts/MainCard/MainCard';
+// Import React
+import React from "react";
 
+// Import Components
+import Header from "../../smallParts/Header/Header";
+import MainCard from "../../smallParts/MainCard/MainCard";
+
+// Geography Component
 const Geography = () => {
-  const content = () => {
-    return (
-      <div className='geography'>
-        <Header sectionName='Geography' />
-      </div>
-    )
-  }
   return (
-    <MainCard content={content()} />
-  )
-}
+    <MainCard>
+      <div className="geography">
+        <Header sectionName="Geography" />
+      </div>
+    </MainCard>
+  );
+};
 
-export default Geography
+export default Geography;

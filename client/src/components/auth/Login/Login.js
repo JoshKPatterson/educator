@@ -6,11 +6,14 @@ import { connect } from "react-redux";
 import { login } from "../../../actions/authActions";
 
 // Import Routing
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
+import Button from "../../smallParts/Button/Button";
+import Title from "../../smallParts/Title/Title";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Custom Hooks
 import { usePrevious, authCheck } from "../../../customHooks";
@@ -20,7 +23,6 @@ import "./Login.scss";
 
 // Login Component
 const Login = (props) => {
-
   // State Setup
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +38,6 @@ const Login = (props) => {
   // Compare New Error With Ref Error
   useEffect(() => {
     if (error !== prevError) {
-
       // Check For Login Error
       if (error.id === "LOGIN_FAIL") {
         setErrMessage(error.msg.msg);
@@ -84,36 +85,47 @@ const Login = (props) => {
   };
 
   // Content For Component
+  // Written Outside Return Statement For Clarity With Auth Check
   const content = () => {
     return (
       <div className="login">
+        <Title />
         <Header sectionName="Login" />
         {errMessage ? <p>{errMessage}</p> : null}
-        <form onSubmit={onSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email"
-            onChange={onChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            onChange={onChange}
-          />
-          <button type="submit">Login</button>
-        </form>
+        <ButtonContainer>
+          <form onSubmit={onSubmit} className='login__form'>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              onChange={onChange}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              onChange={onChange}
+            />
+            <Button type="submit"><p>Login</p></Button>
+            <Button>
+              <Link to='/register'>New User</Link>
+            </Button>
+          </form>
+        </ButtonContainer>
       </div>
     );
   };
 
   // Render Component
-  return authCheck(redirect, <Redirect to="/" />, <MainCard content={content()} />);
+  return authCheck(
+    redirect,
+    <Redirect to="/" />,
+    <MainCard>{content()}</MainCard>
+  );
 };
 
 // Map Error And Auth Props
