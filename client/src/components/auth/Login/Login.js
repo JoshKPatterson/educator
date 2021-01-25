@@ -14,6 +14,7 @@ import MainCard from "../../smallParts/MainCard/MainCard";
 import Button from "../../smallParts/Button/Button";
 import Title from "../../smallParts/Title/Title";
 import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
+import TextInput from "../../smallParts/TextInput/TextInput";
 
 // Import Custom Hooks
 import { usePrevious, authCheck } from "../../../customHooks";
@@ -93,29 +94,32 @@ const Login = (props) => {
         <Header sectionName="Login" />
         {errMessage ? <p>{errMessage}</p> : null}
         <ButtonContainer>
-          <form onSubmit={onSubmit} className='login__form'>
-            <label htmlFor="email">Email</label>
-            <input
+          <form onSubmit={onSubmit} className="login__form">
+            <TextInput
               type="text"
               name="email"
               id="email"
               placeholder="Email"
               onChange={onChange}
+              label='email'
+              labelText='Email'
             />
-            <label htmlFor="password">Password</label>
-            <input
+            <TextInput
               type="password"
               name="password"
               id="password"
               placeholder="Password"
               onChange={onChange}
+              label='password'
+              labelText='Password'
             />
             <Button type="submit"><p>Login</p></Button>
-            <Button>
-              <Link to='/register'>New User</Link>
-            </Button>
+            
           </form>
-        </ButtonContainer>
+          <Button>
+              <Link to="/register">New User</Link>
+            </Button>
+            </ButtonContainer>
       </div>
     );
   };

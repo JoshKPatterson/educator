@@ -1,5 +1,7 @@
+// Import React
 import React from 'react'
 
+// Header Component
 const Header = ({ sectionName }) => {
   return (
     <div>

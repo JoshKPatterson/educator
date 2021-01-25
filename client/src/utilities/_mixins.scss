@@ -1,3 +1,5 @@
+@import './variables';
+
 // Makes target full height and width of parent - use for 'section' components
 @mixin full-hw {
   height: 100%;

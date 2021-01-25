@@ -14,6 +14,7 @@ import MainCard from "../../smallParts/MainCard/MainCard";
 import Button from "../../smallParts/Button/Button";
 import Title from "../../smallParts/Title/Title";
 import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
+import TextInput from "../../smallParts/TextInput/TextInput";
 
 // Import Custom Hooks
 import { usePrevious, authCheck } from "../../../customHooks";
@@ -99,35 +100,38 @@ const Register = (props) => {
         {errMessage ? <p>{errMessage}</p> : null}
         <ButtonContainer>
         <form onSubmit={onSubmit} className='register__form'>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            onChange={onChange}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email"
-            onChange={onChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            onChange={onChange}
-          />
+        <TextInput
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              onChange={onChange}
+              label='name'
+              labelText='Name'
+            />
+        <TextInput
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              onChange={onChange}
+              label='email'
+              labelText='Email'
+            />
+            <TextInput
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              onChange={onChange}
+              label='password'
+              labelText='Password'
+            />
           <Button type="submit"><p>Register</p></Button>
+        </form>
           <Button>
               <Link to='/login'>Existing User</Link>
             </Button>
-        </form>
         </ButtonContainer>
       </div>
     );
