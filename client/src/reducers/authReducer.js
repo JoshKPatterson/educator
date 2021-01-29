@@ -32,10 +32,8 @@ export default function (state = initState, action) {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      // Add Token To Cookie?
-      // ***** REPLACE WITH COOKIE *****
       localStorage.setItem("token", action.payload.token);
-      // ***** REPLACE WITH COOKIE *****
+      console.log(action.payload);
       return {
         ...state,
         ...action.payload,
@@ -46,10 +44,7 @@ export default function (state = initState, action) {
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
-      // Remove Token From Cookie?
-      // ***** REPLACE WITH COOKIE *****
       localStorage.removeItem("token");
-      // ***** REPLACE WITH COOKIE *****
       return {
         ...state,
         token: null,

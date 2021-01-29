@@ -1,6 +1,10 @@
+// Import Libraries
 import axios from "axios";
+
+// Import Actions
 import { returnErrors } from "./errorActions";
 
+// Import Types
 import {
   USER_LOADING,
   USER_LOADED,
@@ -12,9 +16,11 @@ import {
   REGISTER_FAIL,
 } from "./types";
 
-// Check Token & Load User
+// Actions
 
+// Check Token & Load User
 export const loadUser = () => (dispatch, getState) => {
+
   // User Loading
   dispatch({ type: USER_LOADING });
   axios
@@ -34,11 +40,9 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-
 export const registerUser = ({ name, email, password }) => (dispatch) => {
 
   // Headers
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +50,6 @@ export const registerUser = ({ name, email, password }) => (dispatch) => {
   };
 
   // Request Body
-
   const body = JSON.stringify({ name, email, password });
 
   axios
@@ -68,11 +71,9 @@ export const registerUser = ({ name, email, password }) => (dispatch) => {
 };
 
 // Login User
-
 export const login = ({ email, password }) => (dispatch) => {
 
   // Headers
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -80,7 +81,6 @@ export const login = ({ email, password }) => (dispatch) => {
   };
 
   // Request Body
-
   const body = JSON.stringify({ email, password });
 
   axios
@@ -102,7 +102,6 @@ export const login = ({ email, password }) => (dispatch) => {
 };
 
 // Logout User
-
 export const logout = () => {
   return {
     type: LOGOUT_SUCCESS,
@@ -111,12 +110,10 @@ export const logout = () => {
 
 export const tokenConfig = (getState) => {
 
-  // Get Token From Cookie
-
+  // Get Token From Storage
   const token = getState().auth.token;
 
   // Headers
-
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -124,7 +121,6 @@ export const tokenConfig = (getState) => {
   };
 
   // If Token, Add To Headers
-  
   if (token) {
     config.headers["x-auth-token"] = token;
   }

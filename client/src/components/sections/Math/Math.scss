@@ -1,0 +1,7 @@
+@import "../../../utilities/mixins";
+@import "../../../utilities/variables";
+
+.math {
+  @include full-hw;
+  @include all-center-with-column;
+}
