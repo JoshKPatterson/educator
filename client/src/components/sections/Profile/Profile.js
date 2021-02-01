@@ -26,7 +26,7 @@ const Profile = (props) => {
         data: [
           user.stats.sections.math.activities_attempted,
           user.stats.sections.geography.activities_attempted,
-          0
+          0,
         ],
         backgroundColor: [
           "#8AC0DE" /* Blue */,
@@ -47,7 +47,9 @@ const Profile = (props) => {
         <Title />
         <Header sectionName="Profile" />
         <h2>{user.name}</h2>
-        {data.datasets[0].data.reduce((a, b) => a + b, 0) ? <Chart data={data} /> : null}
+        {data.datasets[0].data.reduce((a, b) => a + b, 0) ? (
+          <Chart data={data} />
+        ) : null}
         {/* <Chart data={data} /> */}
         <h3>Sections</h3>
         <h4>Math</h4>
@@ -57,8 +59,7 @@ const Profile = (props) => {
         <p>Average Grade: {user.stats.sections.math.average_grade}</p>
         <h4>Geography</h4>
         <p>
-          Assessments Attempted:
-          {user.stats.sections.geography.activities_attempted}
+          Assessments Attempted: {user.stats.sections.geography.activities_attempted}
         </p>
         <p>Average Grade: {user.stats.sections.geography.average_grade}</p>
         <h4>English</h4>

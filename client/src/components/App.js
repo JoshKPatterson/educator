@@ -12,6 +12,7 @@ import Logout from "./auth/Logout/Logout";
 import Register from "./auth/Register/Register";
 import SectionNavigator from "./sections/SectionNavigator/SectionNavigator";
 import Profile from "./sections/Profile/Profile";
+import Activity from "./sections/Activity/Activity";
 
 // Import Custom Hooks
 import { requireAuth } from "../customHooks";
@@ -46,6 +47,7 @@ const App = () => {
           <PrivateRoute path="/geography" component={Geography} />
           <PrivateRoute path="/sections" component={SectionNavigator} />
           <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/activity" component={Activity} />
         </Switch>
       </Router>
     </div>

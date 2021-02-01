@@ -29,16 +29,16 @@ const Math = ({ setActivity }) => {
         <Header sectionName="Math" />
         <ButtonContainer>
           <Button>
-            <Link to='/' onClick={() => setActivity('Addition')}>Addition</Link>
+            <Link to='/activity' onClick={() => setActivity('Addition')}>Addition</Link>
           </Button>
           <Button>
-            <Link to='/' onClick={() => setActivity('Subtraction')}>Subtraction</Link>
+            <Link to='/activity' onClick={() => setActivity('Subtraction')}>Subtraction</Link>
           </Button>
           <Button>
-            <Link to='/' onClick={() => setActivity('Times Tables')}>Times Tables</Link>
+            <Link to='/activity' onClick={() => setActivity('Times Tables')}>Times Tables</Link>
           </Button>
           <Button>
-            <Link to='/' onClick={() => setActivity('Division')}>Division</Link>
+            <Link to='/activity' onClick={() => setActivity('Division')}>Division</Link>
           </Button>
         </ButtonContainer>
         <ReturnToMenu />

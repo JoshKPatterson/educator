@@ -3,7 +3,7 @@
 import { SET_ACTIVITY } from "../actions/types";
 
 const initState = {
-  activity: null,
+  activityName: null,
 };
 
 export default function (state = initState, action) {
@@ -11,10 +11,9 @@ export default function (state = initState, action) {
     case SET_ACTIVITY:
       return {
         ...state,
-        activity: action.payload,
+        activityName: action.payload,
       };
     default:
       return state;
   }
-
 }

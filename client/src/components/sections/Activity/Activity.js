@@ -1,16 +1,37 @@
 // Import React
-import React from 'react'
+import React from "react";
+
+// Import Redux
+import { connect } from "react-redux";
+
+// Import Components
+import Header from "../../smallParts/Header/Header";
+import MainCard from "../../smallParts/MainCard/MainCard";
+import Title from "../../smallParts/Title/Title";
+import USStates from "../../activities/USStates";
 
 // Import Styles
-import './Activity.scss'
+import "./Activity.scss";
 
 // Activity Component
-const Activity = () => {
+const Activity = ({ activity }) => {
+  const activitySwitch = () => {
+    switch (activity.activityName) {
+      case "US States":
+        return <USStates />;
+      default:
+        return null;
+    }
+  };
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <MainCard>
+      <div className="activity">{activitySwitch()}</div>
+    </MainCard>
+  );
+};
 
-export default Activity
+const mapStateToProps = (state) => ({
+  activity: state.activity,
+});
+
+export default connect(mapStateToProps)(Activity);
