@@ -25,6 +25,7 @@ const Activity = ({ activity }) => {
   };
   return (
     <MainCard>
+      <Title />
       <div className="activity">{activitySwitch()}</div>
     </MainCard>
   );
