@@ -1,6 +1,7 @@
 // Import Types
 import {
-  SET_ACTIVITY
+  SET_ACTIVITY,
+  INCREMENT_SCORE
 } from './types'
 
 // Actions
@@ -10,5 +11,13 @@ export const setActivity = activity => {
   return ({
     type: SET_ACTIVITY,
     payload: activity
+  })
+}
+
+// Increment Score
+
+export const incrementScore = () => {
+  return({
+    type: INCREMENT_SCORE
   })
 }

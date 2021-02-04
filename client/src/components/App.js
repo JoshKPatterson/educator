@@ -13,6 +13,7 @@ import Register from "./auth/Register/Register";
 import SectionNavigator from "./sections/SectionNavigator/SectionNavigator";
 import Profile from "./sections/Profile/Profile";
 import Activity from "./sections/Activity/Activity";
+import Results from './sections/Results/Results'
 
 // Import Custom Hooks
 import { requireAuth } from "../customHooks";
@@ -48,6 +49,7 @@ const App = () => {
           <PrivateRoute path="/sections" component={SectionNavigator} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/activity" component={Activity} />
+          <PrivateRoute path='/results' component={Results} />
         </Switch>
       </Router>
     </div>

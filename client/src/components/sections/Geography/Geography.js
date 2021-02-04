@@ -21,6 +21,12 @@ import './Geography.scss'
 
 // Geography Component
 const Geography = ({ setActivity }) => {
+  const activities = {
+    usStates: {
+      name: 'US States',
+      questionCount: 51,
+    }
+  }
   return (
     <MainCard>
       <div className="geography">
@@ -28,7 +34,7 @@ const Geography = ({ setActivity }) => {
         <Header sectionName="Geography" />
         <ButtonContainer>
           <Button>
-            <Link to='/activity' onClick={() => setActivity('US States')}>US States</Link>
+            <Link to='/activity' onClick={() => setActivity(activities.usStates)}>US States</Link>
           </Button>
           <Button><Link>Placeholder</Link></Button>
           <Button><Link>Placeholder</Link></Button>
