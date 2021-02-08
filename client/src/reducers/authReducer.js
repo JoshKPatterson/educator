@@ -26,6 +26,7 @@ export default function (state = initState, action) {
     case USER_LOADED:
       return {
         ...state,
+        // ...action.payload,
         isAuthenticated: true,
         isLoading: false,
         user: action.payload,
@@ -37,6 +38,7 @@ export default function (state = initState, action) {
       return {
         ...state,
         ...action.payload,
+        // user: action.payload,
         isAuthenticated: true,
         isLoading: false,
       };

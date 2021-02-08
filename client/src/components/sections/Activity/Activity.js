@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
 import Title from "../../smallParts/Title/Title";
-import USStates from "../../activities/USStates";
+import USStates from "../../activities/USStates/USStates";
+import Addition from '../../activities/Addition/Addition'
 
 // Import Styles
 import "./Activity.scss";
@@ -19,6 +20,8 @@ const Activity = ({ activity }) => {
     switch (activity.activityName) {
       case "US States":
         return <USStates />;
+      case "Addition":
+        return <Addition />;
       default:
         return null;
     }

@@ -21,6 +21,28 @@ import "./Math.scss";
 
 // Math Component
 const Math = ({ setActivity }) => {
+  const activities = {
+    addition: {
+      name: 'Addition',
+      genre: 'math',
+      questionCount: 10
+    },
+    subtraction: {
+      name: 'Subtraction',
+      genre: 'math',
+      questionCount: 10
+    },
+    timesTables: {
+      name: 'Times Tables',
+      genre: 'math',
+      questionCount: 10
+    },
+    division: {
+      name: 'Division',
+      genre: 'math',
+      questionCount: 10
+    }
+  }
   
   return (
     <MainCard>
@@ -29,16 +51,16 @@ const Math = ({ setActivity }) => {
         <Header sectionName="Math" />
         <ButtonContainer>
           <Button>
-            <Link to='/activity' onClick={() => setActivity('Addition')}>Addition</Link>
+            <Link to='/activity' onClick={() => setActivity(activities.addition)}>Addition</Link>
           </Button>
           <Button>
-            <Link to='/activity' onClick={() => setActivity('Subtraction')}>Subtraction</Link>
+            <Link to='/activity' onClick={() => setActivity(activities.subtraction)}>Subtraction</Link>
           </Button>
           <Button>
-            <Link to='/activity' onClick={() => setActivity('Times Tables')}>Times Tables</Link>
+            <Link to='/activity' onClick={() => setActivity(activities.timesTables)}>Times Tables</Link>
           </Button>
           <Button>
-            <Link to='/activity' onClick={() => setActivity('Division')}>Division</Link>
+            <Link to='/activity' onClick={() => setActivity(activities.division)}>Division</Link>
           </Button>
         </ButtonContainer>
         <ReturnToMenu />

@@ -18,6 +18,7 @@ mongoose
   .connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false,
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB Connected..."))
@@ -26,6 +27,7 @@ mongoose
 // Use Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/data", require("./routes/api/data"))
 
 const port = process.env.PORT || 5000;
 

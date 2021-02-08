@@ -10,3 +10,6 @@ export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_ACTIVITY = "SET_ACTIVITY";
 export const INCREMENT_SCORE = "INCREMENT_SCORE";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_FAIL = "UPDATE_FAIL";
+export const CLEAR_ACTIVITY = "CLEAR_ACTIVITY";

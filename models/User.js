@@ -36,8 +36,8 @@ const UserSchema = new Schema(
             default: 0,
           },
           average_grade: {
-            type: Number,
-            default: 0,
+            type: Array,
+            default: [],
           },
           activities_attempted: {
             type: Number,
@@ -50,8 +50,8 @@ const UserSchema = new Schema(
             default: 0,
           },
           average_grade: {
-            type: Number,
-            default: 0,
+            type: Array,
+            default: [],
           },
           activities_attempted: {
             type: Number,

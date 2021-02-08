@@ -24,6 +24,7 @@ const Geography = ({ setActivity }) => {
   const activities = {
     usStates: {
       name: 'US States',
+      genre: 'geography',
       questionCount: 51,
     }
   }

@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 
 // Import Redux
 import { connect } from "react-redux";
-import { incrementScore } from "../../actions/activityActions";
+import { incrementScore } from "../../../actions/activityActions";
 
 // Import Routing
 import { Redirect, Link } from "react-router-dom";
 
 // Import Components
-import Button from "../smallParts/Button/Button";
+import Button from "../../smallParts/Button/Button";
 
 // Import Static Data
-import { statesArr } from "../../utilities/staticData";
+import { statesArr } from "../../../utilities/staticData";
 
 // US States Activity Component
 const USStates = (props) => {
@@ -25,20 +25,20 @@ const USStates = (props) => {
   const objConstructor = (state) => {
 
     // Create Object
-    let myObj = new Object();
+    let myObj = {};
   
     // Set Name And Link
     myObj.name = state;
     myObj.link = `https://educator-bucket.s3.amazonaws.com/us_states/${state.replace(/ /g, "_").toLowerCase()}.jpg`;
 
     // Create Empty Array To Populate With Wrong Answers
-    myObj.falseAnswers = new Array();
+    myObj.falseAnswers = [];
 
     // Check If Array Is Full (3)
     while (myObj.falseAnswers.length < 3) {
 
-      // Select Random Number Between 0 and 51
-      let randomIndex = Math.floor(Math.random() * 51);
+      // Select Random Number Between 0 and 50
+      let randomIndex = Math.floor(Math.random() * 50);
       if (
 
         // If State At Random Index Is Not Selected State And Not In Array
@@ -49,11 +49,13 @@ const USStates = (props) => {
       }
     }
 
-    // Combine False Answers With Corret Answer Into Aray
+    // Combine False Answers With Correct Answer Into Aray
     let answerOrder = [myObj.name].concat(myObj.falseAnswers);
 
     // Shuffle Order Of Possible Answers
     myObj.answerOrder = shuffle(answerOrder);
+
+    // Return Object
     return myObj;
   };
 
@@ -61,14 +63,14 @@ const USStates = (props) => {
   const arrConstructor = () => {
   
     // Initialize Empty Array
-    let objArr = new Array();
+    let objArr = [];
 
     // Iterate Over States Array, Call Function On Each Entry
     statesArr.forEach((state) => {
       objArr.push(objConstructor(state));
     });
 
-    // Return New Array
+    // Return Populated Array
     return objArr;
   };
 
@@ -102,12 +104,16 @@ const USStates = (props) => {
 
   // Wait Until State Updates Before Updating currentQuestion
   if(statesList){
-    currentQuestion = statesList[questionNum];
-    [option1, option2, option3, option4] = currentQuestion.answerOrder;
+    if(statesList[questionNum]){
+      currentQuestion = statesList[questionNum];
+      [option1, option2, option3, option4] = currentQuestion.answerOrder;
+    } else {
+      return <Redirect to='/results' />
+    }
   }
 
   // Checks If Answer Is Correct
-  const correctOrNo = (question) => {
+  const onAnswer = (question) => {
     if (question === currentQuestion.name) {
 
       // Action To Redux Store To Update Score
@@ -118,43 +124,31 @@ const USStates = (props) => {
     setQuestionNum(questionNum + 1)
   };
 
-  // Checks If On Last Question
-  const questionCount = () => {
-
-    // Checks If Current Question Is Less Than Question Count
-    if(questionNum > props.activity.questionCount){
-      setQuestionNum(questionNum + 1)
-    } else {
-      return <Redirect to='/results' />
-      
-    }
-  }
-
   // Wait Until Question Data Loads
   if(currentQuestion){
 
     // Render Component
     return (
       <div className="usStates">
-        <p>Question {questionNum}</p>
+        <p>Question {questionNum + 1}</p>
         <h3>What State Is This?</h3>
         <p>{currentQuestion.link}</p>
-        <Button action={() => correctOrNo(option1)}>
+        <Button action={() => onAnswer(option1)}>
 
           <p>{option1}</p>
 
         </Button>
-        <Button action={() => correctOrNo(option2)}>
+        <Button action={() => onAnswer(option2)}>
 
           <p>{option2}</p>
 
         </Button>
-        <Button action={() => correctOrNo(option3)}>
+        <Button action={() => onAnswer(option3)}>
 
           <p>{option3}</p>
 
         </Button>
-        <Button action={() => correctOrNo(option4)}
+        <Button action={() => onAnswer(option4)}
         >
 
           <p>{option4}</p>
@@ -168,7 +162,7 @@ const USStates = (props) => {
   }
 };
 
-// Map Error And Activity Props
+// Map Activity Prop
 const mapStateToProps = state => ({
   activity: state.activity
 })

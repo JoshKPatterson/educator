@@ -40,6 +40,11 @@ const Profile = (props) => {
   const dataCheck = data.datasets[0];
 
   // user.stats.sections.math.average_grade
+  const averages = {
+    math: user.stats.sections.math.average_grade.length > 0 ? Math.round((user.stats.sections.math.average_grade.reduce((a, b) => a + b) / user.stats.sections.math.average_grade.length)) : 0,
+
+    geography: user.stats.sections.geography.average_grade.length > 0 ? Math.round((user.stats.sections.geography.average_grade.reduce((a, b) => a + b) / user.stats.sections.geography.average_grade.length)) : 0,
+  }
 
   return (
     <MainCard>
@@ -56,12 +61,12 @@ const Profile = (props) => {
         <p>
           Assessments Attempted: {user.stats.sections.math.activities_attempted}
         </p>
-        <p>Average Grade: {user.stats.sections.math.average_grade}</p>
+        <p>Average Grade: {averages.math}%</p>
         <h4>Geography</h4>
         <p>
           Assessments Attempted: {user.stats.sections.geography.activities_attempted}
         </p>
-        <p>Average Grade: {user.stats.sections.geography.average_grade}</p>
+        <p>Average Grade: {averages.geography}%</p>
         <h4>English</h4>
         <p>Assessments Attempted: </p>
         <p>Average Grade: </p>
