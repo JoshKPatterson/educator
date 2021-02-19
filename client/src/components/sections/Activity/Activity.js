@@ -11,6 +11,7 @@ import Title from "../../smallParts/Title/Title";
 import USStates from "../../activities/USStates/USStates";
 import Addition from "../../activities/Addition/Addition";
 import Subtraction from "../../activities/Subtraction/Subtraction";
+import TimesTables from "../../activities/TimesTables/TimesTables";
 
 // Import Styles
 import "./Activity.scss";
@@ -25,6 +26,8 @@ const Activity = ({ activity }) => {
         return <Addition />;
       case "Subtraction":
         return <Subtraction />;
+      case "Times Tables":
+        return <TimesTables />;
       default:
         return null;
     }

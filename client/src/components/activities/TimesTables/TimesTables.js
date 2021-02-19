@@ -11,9 +11,8 @@ import { Redirect, Link } from "react-router-dom";
 // Import Components
 import Button from "../../smallParts/Button/Button";
 
-// Import Styles
-import "./Subtraction.scss";
-const Subtraction = (props) => {
+// Times Tables Activity Component
+const TimesTables = (props) => {
   // State Setup
   const [questionNum, setQuestionNum] = useState(0);
   const [questionList, setQuestionList] = useState(null);
@@ -24,19 +23,19 @@ const Subtraction = (props) => {
     let obj = {};
 
     // Set Values For Question
-    obj.value1 = Math.floor(Math.random() * 20) + 1;
-    obj.value2 = Math.floor(Math.random() * (obj.value1 - 1)) + 1;
+    obj.value1 = Math.floor(Math.random() * 12) + 1;
+    obj.value2 = Math.floor(Math.random() * 12) + 1;
 
     // Answer Value
-    obj.answer = obj.value1 - obj.value2;
+    obj.answer = obj.value1 * obj.value2;
 
     // Create Empty Array To Populate With Wrong Answers
     obj.falseAnswers = [];
 
     // Check If Array Is Full (3)
     while (obj.falseAnswers.length < 3) {
-      // Select Random Number Between 1 And 40
-      let randomNum = Math.floor(Math.random() * 20);
+      // Select Random Times Table Number
+      let randomNum = Math.pow(Math.floor(Math.random() * 12) + 1, 2);
 
       // If Num Is Not Answer And Not In Array
       if (obj.answer !== randomNum && !obj.falseAnswers.includes(randomNum)) {
@@ -103,16 +102,6 @@ const Subtraction = (props) => {
     }
   }
 
-  // Wait Until State Updates Before Updating currentQuestion
-  if (questionList) {
-    if (questionList[questionNum]) {
-      currentQuestion = questionList[questionNum];
-      [option1, option2, option3, option4] = currentQuestion.options;
-    } else {
-      return <Redirect to="/results" />;
-    }
-  }
-
   // Checks If Answer Is Correct
   const onAnswer = (question) => {
     if (question === currentQuestion.answer) {
@@ -123,13 +112,12 @@ const Subtraction = (props) => {
     // Increments Current Question To Move To Next Object
     setQuestionNum(questionNum + 1);
   };
-
   if (currentQuestion) {
     return (
-      <div className="subtraction">
+      <div className="addition">
         <p>Question {questionNum + 1}</p>
         <p>
-          {currentQuestion.value1} - {currentQuestion.value2}
+          {currentQuestion.value1} X {currentQuestion.value2}
         </p>
         <Button action={() => onAnswer(option1)}>
           <p>{option1}</p>
@@ -155,4 +143,4 @@ const mapStateToProps = (state) => ({
   activity: state.activity,
 });
 
-export default connect(mapStateToProps, { incrementScore })(Subtraction);
+export default connect(mapStateToProps, { incrementScore })(TimesTables);
