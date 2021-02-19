@@ -9,7 +9,8 @@ import Header from "../../smallParts/Header/Header";
 import MainCard from "../../smallParts/MainCard/MainCard";
 import Title from "../../smallParts/Title/Title";
 import USStates from "../../activities/USStates/USStates";
-import Addition from '../../activities/Addition/Addition'
+import Addition from "../../activities/Addition/Addition";
+import Subtraction from "../../activities/Subtraction/Subtraction";
 
 // Import Styles
 import "./Activity.scss";
@@ -22,6 +23,8 @@ const Activity = ({ activity }) => {
         return <USStates />;
       case "Addition":
         return <Addition />;
+      case "Subtraction":
+        return <Subtraction />;
       default:
         return null;
     }
