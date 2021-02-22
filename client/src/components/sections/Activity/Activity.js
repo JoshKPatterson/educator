@@ -12,6 +12,7 @@ import USStates from "../../activities/USStates/USStates";
 import Addition from "../../activities/Addition/Addition";
 import Subtraction from "../../activities/Subtraction/Subtraction";
 import TimesTables from "../../activities/TimesTables/TimesTables";
+import Division from "../../activities/Division/Division";
 
 // Import Styles
 import "./Activity.scss";
@@ -28,6 +29,8 @@ const Activity = ({ activity }) => {
         return <Subtraction />;
       case "Times Tables":
         return <TimesTables />;
+      case "Division":
+        return <Division />;
       default:
         return null;
     }
