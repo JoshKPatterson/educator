@@ -22,3 +22,16 @@ export const authCheck = (redirect, target, bypass) => {
       return null;
   }
 };
+
+// Shuffle Function (Fisher-Yates Algorithm)
+export const shuffle = array => {
+  let newArr = [...array];
+  let m = newArr.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = newArr[m];
+    newArr[m] = newArr[i];
+    newArr[i] = t;
+  }
+  return newArr;
+}

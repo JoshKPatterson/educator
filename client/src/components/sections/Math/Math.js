@@ -50,16 +50,16 @@ const Math = ({ setActivity }) => {
         <Title />
         <Header sectionName="Math" />
         <ButtonContainer>
-          <Button>
+          <Button customClass='math__button'>
             <Link to='/activity' onClick={() => setActivity(activities.addition)}>Addition</Link>
           </Button>
-          <Button>
+          <Button customClass='math__button'>
             <Link to='/activity' onClick={() => setActivity(activities.subtraction)}>Subtraction</Link>
           </Button>
-          <Button>
+          <Button customClass='math__button'>
             <Link to='/activity' onClick={() => setActivity(activities.timesTables)}>Times Tables</Link>
           </Button>
-          <Button>
+          <Button customClass='math__button'>
             <Link to='/activity' onClick={() => setActivity(activities.division)}>Division</Link>
           </Button>
         </ButtonContainer>

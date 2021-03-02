@@ -1,5 +1,5 @@
 // Import React
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 // Import Redux
 import { connect } from "react-redux";
@@ -10,20 +10,22 @@ import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Button from "../../smallParts/Button/Button";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
+
+// Import Custom Hooks
+import { shuffle } from "../../../customHooks";
 
 // Import Styles
-import './Addition.scss'
+import "./Addition.scss";
 
 // Addition Activity Component
 const Addition = (props) => {
-
   // State Setup
   const [questionNum, setQuestionNum] = useState(0);
   const [questionList, setQuestionList] = useState(null);
 
   // Create Randomized Object For Question
   const objConstructor = () => {
-
     // Create Object
     let obj = {};
 
@@ -38,14 +40,13 @@ const Addition = (props) => {
     obj.falseAnswers = [];
 
     // Check If Array Is Full (3)
-    while(obj.falseAnswers.length < 3){
-
+    while (obj.falseAnswers.length < 3) {
       // Select Random Number Between 1 And 40
       let randomNum = Math.floor(Math.random() * 40) + 1;
 
       // If Num Is Not Answer And Not In Array
-      if(obj.answer !== randomNum && !obj.falseAnswers.includes(randomNum)){
-        obj.falseAnswers.push(randomNum)
+      if (obj.answer !== randomNum && !obj.falseAnswers.includes(randomNum)) {
+        obj.falseAnswers.push(randomNum);
       }
     }
 
@@ -56,107 +57,99 @@ const Addition = (props) => {
     obj.options = shuffle(options);
 
     // Return Object
-    return obj
-  }
-  
+    return obj;
+  };
+
   // Create 10 Objects Within Questions Array
   const arrConstructor = () => {
-
     // Initialize Empty Array
     let arr = [];
 
     // Run objConstructor 10 Times To Make 10 Questions
-    for(let i = 0; i < 10; i++){
+    for (let i = 0; i < 10; i++) {
       let newObj = objConstructor();
-      arr.push(newObj)
+      arr.push(newObj);
     }
 
     // Return Populated Array
     return arr;
-  }
-  
-  // Shuffle Function (Fisher-Yates Algorithm)
-  const shuffle = array => {
-    let newArr = [...array];
-    let m = newArr.length, t, i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = newArr[m];
-      newArr[m] = newArr[i];
-      newArr[i] = t;
-    }
-    return newArr;
-  }
+  };
+
+  // // Shuffle Function (Fisher-Yates Algorithm)
+  // const shuffle = array => {
+  //   let newArr = [...array];
+  //   let m = newArr.length, t, i;
+  //   while (m) {
+  //     i = Math.floor(Math.random() * m--);
+  //     t = newArr[m];
+  //     newArr[m] = newArr[i];
+  //     newArr[i] = t;
+  //   }
+  //   return newArr;
+  // }
 
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {
     const questionsArr = shuffle(arrConstructor());
     setQuestionList(questionsArr);
-  }, [])
+  }, []);
 
   // Initialize Dynamic Values To Be Recycled For Questions
-  let currentQuestion,
-  option1,
-  option2,
-  option3,
-  option4;
+  let currentQuestion, option1, option2, option3, option4;
 
   // Wait Until State Updates Before Updating currentQuestion
-  if(questionList){
-    if(questionList[questionNum]){
+  if (questionList) {
+    if (questionList[questionNum]) {
       currentQuestion = questionList[questionNum];
-      [option1, option2, option3, option4] = currentQuestion.options
+      [option1, option2, option3, option4] = currentQuestion.options;
     } else {
-      return <Redirect to='/results' />
+      return <Redirect to="/results" />;
     }
   }
 
   // Checks If Answer Is Correct
-  const onAnswer = question => {
+  const onAnswer = (question) => {
     if (question === currentQuestion.answer) {
       // Updates Score In Redux Store
       props.incrementScore();
     }
 
     // Increments Current Question To Move To Next Object
-    setQuestionNum(questionNum + 1)
+    setQuestionNum(questionNum + 1);
   };
-  if(currentQuestion){
+  if (currentQuestion) {
     return (
-      <div className='addition'>
-        <p>Question {questionNum + 1}</p>
-        <p>{currentQuestion.value1} + {currentQuestion.value2}</p>
-        <Button action={() => onAnswer(option1)}>
-
-          <p>{option1}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option2)}>
-
-          <p>{option2}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option3)}>
-
-          <p>{option3}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option4)}
-        >
-
-          <p>{option4}</p>
-
-        </Button>
+      <div className="addition">
+        <h2 className='question__num'>
+          <span className="question__span">#{questionNum + 1}</span>
+        </h2>
+        <h1>
+          {currentQuestion.value1} + {currentQuestion.value2}
+        </h1>
+        <ButtonContainer>
+          <Button customClass="answer__button" action={() => onAnswer(option1)}>
+            <p>{option1}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option2)}>
+            <p>{option2}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option3)}>
+            <p>{option3}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option4)}>
+            <p>{option4}</p>
+          </Button>
+        </ButtonContainer>
       </div>
-    )
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 
 // Map Activity Prop
-const mapStateToProps = state => ({
-  activity: state.activity
-})
+const mapStateToProps = (state) => ({
+  activity: state.activity,
+});
 
-export default connect(mapStateToProps, { incrementScore })(Addition)
+export default connect(mapStateToProps, { incrementScore })(Addition);

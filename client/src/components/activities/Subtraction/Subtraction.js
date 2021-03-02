@@ -11,6 +11,9 @@ import { Redirect, Link } from "react-router-dom";
 // Import Components
 import Button from "../../smallParts/Button/Button";
 
+// Import Custom Hooks
+import { shuffle } from '../../../customHooks'
+
 // Import Styles
 import "./Subtraction.scss";
 const Subtraction = (props) => {
@@ -69,20 +72,7 @@ const Subtraction = (props) => {
     return arr;
   };
 
-  // Shuffle Function (Fisher-Yates Algorithm)
-  const shuffle = (array) => {
-    let newArr = [...array];
-    let m = newArr.length,
-      t,
-      i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = newArr[m];
-      newArr[m] = newArr[i];
-      newArr[i] = t;
-    }
-    return newArr;
-  };
+
 
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {

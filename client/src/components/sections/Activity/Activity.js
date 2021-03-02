@@ -37,8 +37,10 @@ const Activity = ({ activity }) => {
   };
   return (
     <MainCard>
-      <Title />
-      <div className="activity">{activitySwitch()}</div>
+      <div className="activity">
+        <Title />
+        {activitySwitch()}
+      </div>
     </MainCard>
   );
 };

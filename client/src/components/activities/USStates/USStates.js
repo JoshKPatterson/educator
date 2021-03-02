@@ -10,37 +10,39 @@ import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Button from "../../smallParts/Button/Button";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Static Data
 import { statesArr } from "../../../utilities/staticData";
 
+// Import Styling
+import "./USStates.scss";
+
 // US States Activity Component
 const USStates = (props) => {
-
   // State Setup
   const [questionNum, setQuestionNum] = useState(0);
   const [statesList, setStatesList] = useState(null);
 
   // Turn State String Into Object
   const objConstructor = (state) => {
-
     // Create Object
     let myObj = {};
-  
+
     // Set Name And Link
     myObj.name = state;
-    myObj.link = `https://educator-bucket.s3.amazonaws.com/us_states/${state.replace(/ /g, "_").toLowerCase()}.jpg`;
+    myObj.link = `https://educator-bucket.s3.amazonaws.com/us_states/${state
+      .replace(/ /g, "_")
+      .toLowerCase()}.jpg`;
 
     // Create Empty Array To Populate With Wrong Answers
     myObj.falseAnswers = [];
 
     // Check If Array Is Full (3)
     while (myObj.falseAnswers.length < 3) {
-
       // Select Random Number Between 0 and 50
       let randomIndex = Math.floor(Math.random() * 50);
       if (
-
         // If State At Random Index Is Not Selected State And Not In Array
         myObj.name !== statesArr[randomIndex] &&
         !myObj.falseAnswers.includes(statesArr[randomIndex])
@@ -61,7 +63,6 @@ const USStates = (props) => {
 
   // Iterate Over Array Of States To Make Array Of Objects
   const arrConstructor = () => {
-  
     // Initialize Empty Array
     let objArr = [];
 
@@ -92,79 +93,64 @@ const USStates = (props) => {
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {
     const randomArr = shuffle(arrConstructor());
-    setStatesList(randomArr);  
-  }, [])
-  
+    setStatesList(randomArr);
+  }, []);
+
   // Initialize Dynamic Values To Be Recycled For Questions
-  let currentQuestion,
-  option1,
-  option2,
-  option3,
-  option4;
+  let currentQuestion, option1, option2, option3, option4;
 
   // Wait Until State Updates Before Updating currentQuestion
-  if(statesList){
-    if(statesList[questionNum]){
+  if (statesList) {
+    if (statesList[questionNum]) {
       currentQuestion = statesList[questionNum];
       [option1, option2, option3, option4] = currentQuestion.answerOrder;
     } else {
-      return <Redirect to='/results' />
+      return <Redirect to="/results" />;
     }
   }
 
   // Checks If Answer Is Correct
   const onAnswer = (question) => {
     if (question === currentQuestion.name) {
-
       // Action To Redux Store To Update Score
       props.incrementScore();
-    } 
+    }
 
     // Increments Current Question To Move To Next Object
-    setQuestionNum(questionNum + 1)
+    setQuestionNum(questionNum + 1);
   };
 
   // Wait Until Question Data Loads
-  if(currentQuestion){
-
+  if (currentQuestion) {
     // Render Component
     return (
       <div className="usStates">
         <p>Question {questionNum + 1}</p>
-        <h3>What State Is This?</h3>
-        <p>{currentQuestion.link}</p>
-        <Button action={() => onAnswer(option1)}>
-
-          <p>{option1}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option2)}>
-
-          <p>{option2}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option3)}>
-
-          <p>{option3}</p>
-
-        </Button>
-        <Button action={() => onAnswer(option4)}
-        >
-
-          <p>{option4}</p>
-
-        </Button>
-        <button onClick={() => console.log(statesList)}>click pls</button>
+        <img src={currentQuestion.link} />
+        <ButtonContainer>
+          <Button customClass="states__answer__button" action={() => onAnswer(option1)}>
+            <p>{option1}</p>
+          </Button>
+          <Button customClass="states__answer__button" action={() => onAnswer(option2)}>
+            <p>{option2}</p>
+          </Button>
+          <Button customClass="states__answer__button" action={() => onAnswer(option3)}>
+            <p>{option3}</p>
+          </Button>
+          <Button customClass="states__answer__button" action={() => onAnswer(option4)}>
+            <p>{option4}</p>
+          </Button>
+        </ButtonContainer>
       </div>
     );
   } else {
-    return null
+    return null;
   }
 };
 
 // Map Activity Prop
-const mapStateToProps = state => ({
-  activity: state.activity
-})
+const mapStateToProps = (state) => ({
+  activity: state.activity,
+});
 
 export default connect(mapStateToProps, { incrementScore })(USStates);

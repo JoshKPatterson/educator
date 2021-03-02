@@ -5,11 +5,16 @@ import React from "react";
 import { Pie } from "react-chartjs-2";
 // import "chartjs-plugin-datalabels";
 
+// Import Styling
+import './Chart.scss'
+
 // Chart Component
 const Chart = ({ data }) => {
   return (
     <div className="chart">
       <Pie
+      // width={150}
+      // height={300}
         data={data}
         options={{
           // plugins: {
@@ -25,9 +30,10 @@ const Chart = ({ data }) => {
           //   },
           // },
           legend: {
-            // display: false
+            display: true,
             position: 'left'
           },
+          maintainAspectRatio: false,
           responsive: true
         }}
       />

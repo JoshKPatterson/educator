@@ -5,6 +5,7 @@
   border: 2px solid $mainColor;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 0;
   a,
   p {
     text-align: center;
@@ -13,7 +14,7 @@
     font-weight: bold;
     display: block;
     font-size: 1.5rem;
-    margin: 0.25rem 1rem;
+    padding: 0.5rem 2rem;
     font-family: $mainFont;
   }
   &:hover {

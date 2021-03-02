@@ -5,3 +5,7 @@
   @include full-hw;
   @include all-center-with-column;
 }
+
+.math__button {
+  @include margin-under-bc-item;
+}

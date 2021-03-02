@@ -21,10 +21,10 @@ const SectionNavigator = () => {
       <div className="sectionNavigator">
         <Title />
         <ButtonContainer>
-          <Button>
+          <Button customClass='sectionNavigator__button'>
             <Link to="/math">Math</Link>
           </Button>
-          <Button>
+          <Button customClass='sectionNavigator__button'>
             <Link to="/geography">Geography</Link>
           </Button>
         </ButtonContainer>

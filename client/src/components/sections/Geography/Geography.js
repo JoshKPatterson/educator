@@ -34,12 +34,12 @@ const Geography = ({ setActivity }) => {
         <Title />
         <Header sectionName="Geography" />
         <ButtonContainer>
-          <Button>
+          <Button customClass='geography__button'>
             <Link to='/activity' onClick={() => setActivity(activities.usStates)}>US States</Link>
           </Button>
-          <Button><Link>Placeholder</Link></Button>
-          <Button><Link>Placeholder</Link></Button>
-          <Button><Link>Placeholder</Link></Button>
+          <Button customClass='geography__button'><Link>Placeholder</Link></Button>
+          <Button customClass='geography__button'><Link>Placeholder</Link></Button>
+          <Button customClass='geography__button'><Link>Placeholder</Link></Button>
         </ButtonContainer>
         <ReturnToMenu />
       </div>

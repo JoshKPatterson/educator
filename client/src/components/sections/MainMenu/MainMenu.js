@@ -28,13 +28,13 @@ const MainMenu = ({ user }) => {
           Welcome <span className="mainMenu__userName">{user.name}</span>
         </h2>
         <ButtonContainer>
-          <Button>
+          <Button customClass='mainMenu__button'>
             <Link to="/sections">Study</Link>
           </Button>
-          <Button>
+          <Button customClass='mainMenu__button'>
             <Link to="/profile">Profile</Link>
           </Button>
-          <Button>
+          <Button customClass='mainMenu__button'>
             <Link to="/logout">Logout</Link>
           </Button>
         </ButtonContainer>

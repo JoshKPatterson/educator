@@ -7,4 +7,5 @@
 
 .login__form {
   @include all-center-with-column;
+  @include margin-under-bc-item;
 }

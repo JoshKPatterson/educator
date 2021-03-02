@@ -16,17 +16,6 @@
   color: $secondaryColor;
 }
 
-.mainMenu_buttonContainer {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  justify-content: center;
-  @include horizontal-center;
-  button {
-    margin-bottom: 2rem;
-    min-width: 75%;
-    &:nth-last-of-type(1){
-      margin-bottom: 0;
-    }
-  }
+.mainMenu__button {
+  @include margin-under-bc-item;
 }
