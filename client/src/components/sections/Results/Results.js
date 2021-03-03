@@ -1,9 +1,12 @@
 // Import React
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 // Import Redux
 import { connect } from "react-redux";
-import { updateUserData, clearActivity } from '../../../actions/activityActions'
+import {
+  updateUserData,
+  clearActivity,
+} from "../../../actions/activityActions";
 
 // Import Components
 import Header from "../../smallParts/Header/Header";
@@ -12,48 +15,57 @@ import Title from "../../smallParts/Title/Title";
 import ReturnToMenu from "../../smallParts/ReturnToMenu/ReturnToMenu";
 
 // Import Styles
-import './Results.scss'
+import "./Results.scss";
 
 const Results = (props) => {
   const [name, setName] = useState(null);
   const [score, setScore] = useState(null);
+  const [questionCount, setQuestionCount] = useState(null);
 
   useEffect(() => {
     setName(props.activity.activityName);
-    setScore(props.activity.score)
+    setScore(props.activity.score);
+    setQuestionCount(props.activity.questionCount);
     // post results to database
 
     // create object with data to be posted
     const data = {
       genre: props.activity.genre,
-      score: Math.round((props.activity.score / props.activity.questionCount) * 100),
-      id: typeof props.user._id !== 'undefined' ? props.user._id : props.user.id
-    }
+      score: Math.round(
+        (props.activity.score / props.activity.questionCount) * 100
+      ),
+      id:
+        typeof props.user._id !== "undefined" ? props.user._id : props.user.id,
+    };
 
-    console.log(data)
+    console.log(data);
 
     // attempt to post
     props.updateUserData(data);
     props.clearActivity();
-  }, [])
+  }, []);
 
   return (
     <MainCard>
-      <div className='results'>
+      <div className="results">
         <Title />
-        <Header sectionName='Results' />
-        <h3>Activity Name: {name}</h3>
-        <h3>Score: {score}</h3>
+        <Header sectionName="Results" />
+        <div className="results__container">
+          <h3 className="results__activityName">{name}</h3>
+          <h3>Score: {Math.round((score / questionCount) * 100)}%</h3>
+        </div>
+        <ReturnToMenu />
       </div>
-      <ReturnToMenu />
     </MainCard>
-  )
-}
+  );
+};
 
 // Map Activity Prop
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   activity: state.activity,
-  user: state.auth.user
-})
+  user: state.auth.user,
+});
 
-export default connect(mapStateToProps, { updateUserData, clearActivity })(Results)
+export default connect(mapStateToProps, { updateUserData, clearActivity })(
+  Results
+);

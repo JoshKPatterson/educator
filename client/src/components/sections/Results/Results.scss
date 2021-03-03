@@ -1,0 +1,23 @@
+@import '../../../utilities/mixins';
+@import '../../../utilities/variables';
+
+.results {
+  @include full-hw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.results__container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: center;
+  @include horizontal-center;
+}
+
+.results__activityName {
+  font-weight: bold;
+  color: $secondaryColor;
+  font-size: 1.5rem;
+}

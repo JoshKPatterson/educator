@@ -125,7 +125,9 @@ const USStates = (props) => {
     // Render Component
     return (
       <div className="usStates">
-        <p>Question {questionNum + 1}</p>
+        <h2 className='states__question__num'>
+          <span className="question__span">#{questionNum + 1}</span>
+        </h2>
         <img src={currentQuestion.link} />
         <ButtonContainer>
           <Button customClass="states__answer__button" action={() => onAnswer(option1)}>

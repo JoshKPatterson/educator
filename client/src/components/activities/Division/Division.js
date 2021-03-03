@@ -10,9 +10,13 @@ import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Button from "../../smallParts/Button/Button";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Custom Hooks
-import { shuffle } from '../../../customHooks'
+import { shuffle } from "../../../customHooks";
+
+// Import Styling
+import "./Division.scss";
 
 // Division Activity Component
 const Division = (props) => {
@@ -29,7 +33,7 @@ const Division = (props) => {
     // obj.value1 Is The Dividend, obj.value2 Is The Divisor
     obj.answer = Math.floor(Math.random() * 12) + 1;
     obj.value2 = Math.floor(Math.random() * 12) + 1;
-    obj.value1 = obj.answer * obj.value2
+    obj.value1 = obj.answer * obj.value2;
 
     // Create Empty Array To Populate With Wrong Answers
     obj.falseAnswers = [];
@@ -70,8 +74,6 @@ const Division = (props) => {
     return arr;
   };
 
-
-
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {
     const questionsArr = shuffle(arrConstructor());
@@ -104,22 +106,26 @@ const Division = (props) => {
   if (currentQuestion) {
     return (
       <div className="division">
-        <p>Question {questionNum + 1}</p>
-        <p>
+        <h2 className="question__num">
+          <span className="question__span">#{questionNum + 1}</span>
+        </h2>
+        <h1>
           {currentQuestion.value1} ÷ {currentQuestion.value2}
-        </p>
-        <Button action={() => onAnswer(option1)}>
-          <p>{option1}</p>
-        </Button>
-        <Button action={() => onAnswer(option2)}>
-          <p>{option2}</p>
-        </Button>
-        <Button action={() => onAnswer(option3)}>
-          <p>{option3}</p>
-        </Button>
-        <Button action={() => onAnswer(option4)}>
-          <p>{option4}</p>
-        </Button>
+        </h1>
+        <ButtonContainer>
+          <Button customClass="answer__button" action={() => onAnswer(option1)}>
+            <p>{option1}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option2)}>
+            <p>{option2}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option3)}>
+            <p>{option3}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option4)}>
+            <p>{option4}</p>
+          </Button>
+        </ButtonContainer>
       </div>
     );
   } else {

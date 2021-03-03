@@ -10,12 +10,15 @@ import { Redirect, Link } from "react-router-dom";
 
 // Import Components
 import Button from "../../smallParts/Button/Button";
+import ButtonContainer from "../../smallParts/ButtonContainer/ButtonContainer";
 
 // Import Custom Hooks
-import { shuffle } from '../../../customHooks'
+import { shuffle } from "../../../customHooks";
 
 // Import Styles
 import "./Subtraction.scss";
+
+// Subtraction Activity Component
 const Subtraction = (props) => {
   // State Setup
   const [questionNum, setQuestionNum] = useState(0);
@@ -72,8 +75,6 @@ const Subtraction = (props) => {
     return arr;
   };
 
-
-
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {
     const questionsArr = shuffle(arrConstructor());
@@ -117,22 +118,26 @@ const Subtraction = (props) => {
   if (currentQuestion) {
     return (
       <div className="subtraction">
-        <p>Question {questionNum + 1}</p>
-        <p>
+        <h2 className="question__num">
+          <span className="question__span">#{questionNum + 1}</span>
+        </h2>
+        <h1>
           {currentQuestion.value1} - {currentQuestion.value2}
-        </p>
-        <Button action={() => onAnswer(option1)}>
-          <p>{option1}</p>
-        </Button>
-        <Button action={() => onAnswer(option2)}>
-          <p>{option2}</p>
-        </Button>
-        <Button action={() => onAnswer(option3)}>
-          <p>{option3}</p>
-        </Button>
-        <Button action={() => onAnswer(option4)}>
-          <p>{option4}</p>
-        </Button>
+        </h1>
+        <ButtonContainer>
+          <Button customClass="answer__button" action={() => onAnswer(option1)}>
+            <p>{option1}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option2)}>
+            <p>{option2}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option3)}>
+            <p>{option3}</p>
+          </Button>
+          <Button customClass="answer__button" action={() => onAnswer(option4)}>
+            <p>{option4}</p>
+          </Button>
+        </ButtonContainer>
       </div>
     );
   } else {
