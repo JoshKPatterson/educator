@@ -1,0 +1,176 @@
+/* 
+************Small Parts************
+Directory
+0. Global
+1. Button
+2. Button Container
+3. Chart
+4. Header
+5. Main Card
+6. Menu Button
+7. Return To Menu
+8. Text Input
+9. Title
+**********************************
+*/
+
+// Imports
+
+@import "../../utilities/mixins";
+@import "../../utilities/variables";
+
+// 0. Global
+
+// 1. Button
+
+.buttonProp {
+  background-color: white;
+  border: 2px solid $mainColor;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  a,
+  p {
+    text-align: center;
+    text-decoration: none;
+    color: $mainColor;
+    font-weight: bold;
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+    font-family: $mainFont;
+  }
+}
+
+@media (hover: hover) {
+  .buttonProp {
+    &:hover {
+      background-color: $mainColor;
+      cursor: pointer;
+      a,
+      p {
+        color: white;
+      }
+    }
+  }
+}
+
+// 2. Button Container
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: center;
+  @include horizontal-center;
+  
+}
+
+// 3. Chart
+
+.chart {
+  position: relative;
+  height: 40vh;
+  width: 40vw;
+  @include horizontal-center;
+  canvas {
+    width: 450px;
+  }
+}
+
+// 4. Header
+
+// 5. Main Card
+
+.mainCard {
+  background-color: white;
+  box-shadow: 0 -12.5px 10px rgba(0, 0, 0, 0.06),
+    0 -6.7px 5.3px rgba(0, 0, 0, 0.048), 0 -2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+  border: solid white 5px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  height: 90vh;
+  width: 85vw;
+  position: relative;
+}
+
+// 6. Menu Button
+
+// 7. Return To Menu
+
+.returnToMenu__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include margin-under-bc-item;
+}
+
+// 8. Text Input
+
+.form__group {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  font-family: $mainFont;
+}
+
+.form__textInput {
+  color: $textColor;
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 3px solid $mainColor;
+  outline: 0;
+  font-size: 1.3rem;
+  padding: 7px 0;
+  transition: border-color 0.2s;
+  &::placeholder {
+    color: transparent;
+  }
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+  &:focus {
+    ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $mainColor;
+    font-weight: bold;    
+    }
+    padding-bottom: 6px;  
+  // font-weight: bold;
+  border-width: 3px;
+  }
+  &:required,&:invalid { 
+    box-shadow:none; 
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  font-weight: bold;
+  color: $textColor;
+}
+
+// 9. Title
+
+.title {
+  font-family: $titleFont;
+  color: $mainColor;
+  font-size: 1.25rem;
+}

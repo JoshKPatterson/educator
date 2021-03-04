@@ -1,0 +1,132 @@
+/* 
+************Sections************
+Directory
+0. Global
+1. Activity
+2. Geography
+3. Main Menu
+4. Math
+5. Profile
+6. Results
+7. Section Navigator
+**********************************
+*/
+
+// Imports 
+
+@import "../../utilities/mixins";
+@import "../../utilities/variables";
+
+// 0. Global
+
+// 1. Activity
+
+.activity {
+  @include full-hw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+// 2. Geography
+
+.geography {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+.geography__button {
+  @include margin-under-bc-item;
+}
+
+// 3. Main Menu
+
+.mainMenu {
+  @include full-hw;
+  // @include horizontal-center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-family: $mainFont;
+  }
+}
+
+.mainMenu__userName {
+  color: $secondaryColor;
+}
+
+.mainMenu__button {
+  @include margin-under-bc-item;
+}
+
+// 4. Math
+
+.math {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+.math__button {
+  @include margin-under-bc-item;
+}
+
+// 5. Profile
+
+.profile {
+  @include full-hw;
+  @include all-center-with-column;
+  justify-content: space-between;
+  max-height: 100%;
+  position: absolute;
+}
+
+.profile__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin: 0.1rem 0 0.2rem 0;
+}
+
+h2 span {
+  color: $secondaryColor;
+}
+
+// 6. Results
+
+.results {
+  @include full-hw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.results__container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: center;
+  @include horizontal-center;
+}
+
+.results__activityName {
+  font-weight: bold;
+  color: $secondaryColor;
+  font-size: 1.5rem;
+}
+
+// 7. Section Navigator
+
+.sectionNavigator {
+  @include full-hw;
+  // @include horizontal-center;
+  @include all-center-with-column;
+  h2 {
+    font-family: $mainFont;
+  }
+}
+
+.sectionNavigator__button {
+  @include margin-under-bc-item;
+}

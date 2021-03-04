@@ -1,0 +1,47 @@
+/* 
+************Auth************
+Directory
+0. Global
+1. Login
+2. Logout
+3. Register
+**********************************
+*/
+
+// Imports
+
+@import "../../utilities/mixins";
+@import "../../utilities/variables";
+
+// 0. Global
+
+// 1. Login
+
+.login {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+.login__form {
+  @include all-center-with-column;
+  @include margin-under-bc-item;
+}
+
+// 2. Logout
+
+.logout {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+// 3. Register
+
+.register {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+.register__form {
+  @include all-center-with-column;
+  @include margin-under-bc-item;
+}

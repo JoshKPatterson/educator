@@ -1,9 +1,0 @@
-@import "../../../utilities/mixins";
-
-.returnToMenu__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @include margin-under-bc-item;
-}

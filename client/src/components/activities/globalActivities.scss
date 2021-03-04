@@ -1,0 +1,88 @@
+/* 
+************Activities************
+Directory
+0. Global
+1. Addition
+2. Division
+3. Subtraction
+4. Times Tables
+5. US States
+**********************************
+*/
+
+// Imports
+@import "../../utilities/mixins";
+@import '../../utilities/variables';
+
+// 0. Global
+
+// 1. Addition
+
+.addition {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.question__num {
+  margin: 1rem auto;
+  padding: 0.33rem 2rem;
+  border: 3px solid $mainColor;
+  border-radius: 20px;
+}
+
+.answer__button {
+  margin-bottom: 1rem;
+  min-width: 50vw;
+}
+
+// 2. Division
+
+.division {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+// 3. Subtraction
+
+.subtraction {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+// 4. Times Tables
+
+.timesTables {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+// 5. US States
+
+.usStates {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  img {
+    width: 100%;
+    margin-bottom: 0.33rem;
+  }
+}
+
+.states__question__num {
+  margin: 0.1rem auto;
+  padding: 0.16rem 1rem;
+  border: 3px solid $mainColor;
+  border-radius: 20px;
+}
+
+.states__answer__button {
+  margin-bottom: 2vh;
+  p {
+    padding: 0.33rem 3rem;
+    font-size: 1.25rem;
+  }
+}

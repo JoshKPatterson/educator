@@ -1,7 +1,0 @@
-@import "../../../utilities/mixins";
-
-.profile {
-  @include full-hw;
-  @include all-center-with-column;
-  justify-content: space-between;
-}
