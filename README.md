@@ -2,7 +2,9 @@
 
 ### This is a React project made by Joshua Patterson (https://github.com/JoshKPatterson)
 
-### Live version currently unavailable
+### Live version available here:
+
+### https://educator-app.herokuapp.com
 
 # What is it?
 
