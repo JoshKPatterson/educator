@@ -63,7 +63,7 @@ const TimesTables = (props) => {
     let arr = [];
 
     // Run objConstructor 10 Times To Make 10 Questions
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < props.activity.questionCount; i++) {
       let newObj = objConstructor();
       arr.push(newObj);
     }
@@ -103,9 +103,11 @@ const TimesTables = (props) => {
   };
   if (currentQuestion) {
     return (
-      <div className="timesTables">
+      <div className="timesTables activity">
         <h2 className="question__num">
-          <span className="question__span">#{questionNum + 1}</span>
+          <span className="question__span">
+            {questionNum + 1}/{questionList.length}
+          </span>
         </h2>
         <h1>
           {currentQuestion.value1} X {currentQuestion.value2}

@@ -18,11 +18,12 @@ import ReturnToMenu from "../smallParts/ReturnToMenu";
 
 // Geography Component
 const Geography = ({ setActivity }) => {
+  const statesQuestionNumCount = [10, 25, 51]
   const activities = {
     usStates: {
       name: 'US States',
       genre: 'geography',
-      questionCount: 51,
+      questionCount: statesQuestionNumCount,
     }
   }
   return (
@@ -32,7 +33,7 @@ const Geography = ({ setActivity }) => {
         <Header sectionName="Geography" />
         <ButtonContainer>
           <Button customClass='geography__button'>
-            <Link to='/activity' onClick={() => setActivity(activities.usStates)}>US States</Link>
+            <Link to='/questioncount' onClick={() => setActivity(activities.usStates)}>US States</Link>
           </Button>
           <Button customClass='geography__button'><Link>Placeholder</Link></Button>
           <Button customClass='geography__button'><Link>Placeholder</Link></Button>

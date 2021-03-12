@@ -12,17 +12,23 @@ Directory
 
 // Imports
 @import "../../utilities/mixins";
-@import '../../utilities/variables';
+@import "../../utilities/variables";
 
 // 0. Global
 
-// 1. Addition
-
-.addition {
+.activity {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
 }
+
+// 1. Addition
+
+// .addition {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 1 auto;
+// }
 
 .question__num {
   margin: 1rem auto;
@@ -38,34 +44,34 @@ Directory
 
 // 2. Division
 
-.division {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
+// .division {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 1 auto;
+// }
 
 // 3. Subtraction
 
-.subtraction {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
+// .subtraction {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 1 auto;
+// }
 
 // 4. Times Tables
 
-.timesTables {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
+// .timesTables {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 1 auto;
+// }
 
 // 5. US States
 
 .usStates {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  // display: flex;
+  // flex-direction: column;
+  // flex: 1 1 auto;
   img {
     width: 100%;
     margin-bottom: 0.33rem;
@@ -79,10 +85,12 @@ Directory
   border-radius: 20px;
 }
 
-.states__answer__button {
-  margin-bottom: 2vh;
-  p {
-    padding: 0.33rem 3rem;
-    font-size: 1.25rem;
+.buttonContainer {
+  .states__answer__button { 
+    margin-bottom: 2vh;
+    p {
+      padding: 0.33rem 3rem;
+      font-size: 1.25rem;
+    }
   }
 }

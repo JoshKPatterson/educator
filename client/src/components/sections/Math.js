@@ -18,46 +18,68 @@ import ReturnToMenu from "../smallParts/ReturnToMenu";
 
 // Math Component
 const Math = ({ setActivity }) => {
+  const mathQuestionNumCount = [10, 20, 30, 40];
+
   const activities = {
     addition: {
-      name: 'Addition',
-      genre: 'math',
-      questionCount: 10
+      name: "Addition",
+      genre: "math",
+      questionCount: mathQuestionNumCount,
     },
     subtraction: {
-      name: 'Subtraction',
-      genre: 'math',
-      questionCount: 10
+      name: "Subtraction",
+      genre: "math",
+      questionCount: mathQuestionNumCount,
     },
     timesTables: {
-      name: 'Times Tables',
-      genre: 'math',
-      questionCount: 10
+      name: "Times Tables",
+      genre: "math",
+      questionCount: mathQuestionNumCount,
     },
     division: {
-      name: 'Division',
-      genre: 'math',
-      questionCount: 10
-    }
-  }
-  
+      name: "Division",
+      genre: "math",
+      questionCount: mathQuestionNumCount,
+    },
+  };
+
   return (
     <MainCard>
       <div className="math">
         <Title />
         <Header sectionName="Math" />
         <ButtonContainer>
-          <Button customClass='math__button'>
-            <Link to='/activity' onClick={() => setActivity(activities.addition)}>Addition</Link>
+          <Button customClass="math__button">
+            <Link
+              to="/questioncount"
+              onClick={() => setActivity(activities.addition)}
+            >
+              Addition
+            </Link>
           </Button>
-          <Button customClass='math__button'>
-            <Link to='/activity' onClick={() => setActivity(activities.subtraction)}>Subtraction</Link>
+          <Button customClass="math__button">
+            <Link
+              to="/questioncount"
+              onClick={() => setActivity(activities.subtraction)}
+            >
+              Subtraction
+            </Link>
           </Button>
-          <Button customClass='math__button'>
-            <Link to='/activity' onClick={() => setActivity(activities.timesTables)}>Times Tables</Link>
+          <Button customClass="math__button">
+            <Link
+              to="/questioncount"
+              onClick={() => setActivity(activities.timesTables)}
+            >
+              Times Tables
+            </Link>
           </Button>
-          <Button customClass='math__button'>
-            <Link to='/activity' onClick={() => setActivity(activities.division)}>Division</Link>
+          <Button customClass="math__button">
+            <Link
+              to="/questioncount"
+              onClick={() => setActivity(activities.division)}
+            >
+              Division
+            </Link>
           </Button>
         </ButtonContainer>
         <ReturnToMenu />
@@ -66,4 +88,4 @@ const Math = ({ setActivity }) => {
   );
 };
 
-export default connect(null, { setActivity})(Math);
+export default connect(null, { setActivity })(Math);

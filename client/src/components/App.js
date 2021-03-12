@@ -11,6 +11,7 @@ import Login from "./auth/Login";
 import Logout from "./auth/Logout";
 import Register from "./auth/Register";
 import SectionNavigator from "./sections/SectionNavigator";
+import QuestionNumSelector from './sections/QuestionNumSelector';
 import Profile from "./sections/Profile";
 import Activity from "./sections/Activity";
 import Results from './sections/Results'
@@ -54,6 +55,7 @@ const App = () => {
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/activity" component={Activity} />
           <PrivateRoute path='/results' component={Results} />
+          <PrivateRoute path='/questioncount' component={QuestionNumSelector} />
         </Switch>
       </Router>
     </div>

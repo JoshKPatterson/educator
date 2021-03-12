@@ -12,6 +12,9 @@ import { Redirect, Link } from "react-router-dom";
 import Button from "../smallParts/Button";
 import ButtonContainer from "../smallParts/ButtonContainer";
 
+// Import Custom Hooks
+import { shuffle } from "../../customHooks";
+
 // Import Static Data
 import { statesArr } from "../../utilities/staticData";
 
@@ -19,87 +22,96 @@ import { statesArr } from "../../utilities/staticData";
 const USStates = (props) => {
   // State Setup
   const [questionNum, setQuestionNum] = useState(0);
-  const [statesList, setStatesList] = useState(null);
+  const [questionList, setQuestionList] = useState(null);
+
+  // Randomize States Array
+  const randomStatesArr = shuffle(statesArr)
 
   // Turn State String Into Object
   const objConstructor = (state) => {
     // Create Object
-    let myObj = {};
+    let obj = {};
 
     // Set Name And Link
-    myObj.name = state;
-    myObj.link = `https://educator-bucket.s3.amazonaws.com/us_states/${state
+    obj.name = state;
+    obj.link = `https://educator-bucket.s3.amazonaws.com/us_states/${state
       .replace(/ /g, "_")
       .toLowerCase()}.jpg`;
 
     // Create Empty Array To Populate With Wrong Answers
-    myObj.falseAnswers = [];
+    obj.falseAnswers = [];
 
     // Check If Array Is Full (3)
-    while (myObj.falseAnswers.length < 3) {
+    while (obj.falseAnswers.length < 3) {
       // Select Random Number Between 0 and 50
       let randomIndex = Math.floor(Math.random() * 50);
       if (
         // If State At Random Index Is Not Selected State And Not In Array
-        myObj.name !== statesArr[randomIndex] &&
-        !myObj.falseAnswers.includes(statesArr[randomIndex])
+        obj.name !== statesArr[randomIndex] &&
+        !obj.falseAnswers.includes(statesArr[randomIndex])
       ) {
-        myObj.falseAnswers.push(statesArr[randomIndex]);
+        obj.falseAnswers.push(statesArr[randomIndex]);
       }
     }
 
     // Combine False Answers With Correct Answer Into Aray
-    let answerOrder = [myObj.name].concat(myObj.falseAnswers);
+    let answerOrder = [obj.name].concat(obj.falseAnswers);
 
     // Shuffle Order Of Possible Answers
-    myObj.answerOrder = shuffle(answerOrder);
+    obj.answerOrder = shuffle(answerOrder);
 
     // Return Object
-    return myObj;
+    return obj;
   };
 
-  // Iterate Over Array Of States To Make Array Of Objects
+  // Iterate Over Randomized Array Of States To Make Array Of Objects
   const arrConstructor = () => {
     // Initialize Empty Array
-    let objArr = [];
+    let arr = [];
 
     // Iterate Over States Array, Call Function On Each Entry
-    statesArr.forEach((state) => {
-      objArr.push(objConstructor(state));
-    });
+    // statesArr.forEach((state) => {
+    //   objArr.push(objConstructor(state));
+    // });
+
+    for (let i = 0; i < props.activity.questionCount; i++){
+      let newObj = objConstructor(randomStatesArr[i]);
+      arr.push(newObj)
+    }
+
 
     // Return Populated Array
-    return objArr;
+    return arr;
   };
 
-  // Shuffle Function (Fisher-Yates Algorithm)
-  const shuffle = (array) => {
-    let newArr = [...array];
-    let m = newArr.length,
-      t,
-      i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = newArr[m];
-      newArr[m] = newArr[i];
-      newArr[i] = t;
-    }
-    return newArr;
-  };
+  // // Shuffle Function (Fisher-Yates Algorithm)
+  // const shuffle = (array) => {
+  //   let newArr = [...array];
+  //   let m = newArr.length,
+  //     t,
+  //     i;
+  //   while (m) {
+  //     i = Math.floor(Math.random() * m--);
+  //     t = newArr[m];
+  //     newArr[m] = newArr[i];
+  //     newArr[i] = t;
+  //   }
+  //   return newArr;
+  // };
 
   // Create Randomized Array Of Objects And Update It To State
   useEffect(() => {
     const randomArr = shuffle(arrConstructor());
-    setStatesList(randomArr);
+    setQuestionList(randomArr);
   }, []);
 
   // Initialize Dynamic Values To Be Recycled For Questions
   let currentQuestion, option1, option2, option3, option4;
 
   // Wait Until State Updates Before Updating currentQuestion
-  if (statesList) {
-    if (statesList[questionNum]) {
-      currentQuestion = statesList[questionNum];
+  if (questionList) {
+    if (questionList[questionNum]) {
+      currentQuestion = questionList[questionNum];
       [option1, option2, option3, option4] = currentQuestion.answerOrder;
     } else {
       return <Redirect to="/results" />;
@@ -121,9 +133,11 @@ const USStates = (props) => {
   if (currentQuestion) {
     // Render Component
     return (
-      <div className="usStates">
+      <div className="usStates activity">
         <h2 className="states__question__num">
-          <span className="question__span">#{questionNum + 1}</span>
+          <span className="question__span">
+            {questionNum + 1}/{questionList.length}
+          </span>
         </h2>
         <img src={currentQuestion.link} />
         <ButtonContainer>
