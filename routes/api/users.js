@@ -38,7 +38,9 @@ router.post("/", (req, res) => {
           // jwt.sign({ id: user.id }, config.get("jwtSecret"), (err, token) => {
           jwt.sign(
             { id: user.id },
-            (config?.get('jwtSecret') || process.env.JWT_SECRET ),
+            config.get("jwtSecret")
+              ? config.get("jwtSecret")
+              : process.env.JWT_SECRET,
             (err, token) => {
               if (err) throw err;
               res.json({

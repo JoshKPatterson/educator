@@ -12,7 +12,9 @@ app.use(express.json());
 
 // DB Config
 // const db = config.get("mongoURI");
-const db = (config?.get('mongoURI') || process.env.JWT_SECRET );
+const db = config.get("mongoURI")
+  ? config.get("mongoURI")
+  : process.env.MONGO_URI;
 
 // Connect to Mongo
 mongoose
