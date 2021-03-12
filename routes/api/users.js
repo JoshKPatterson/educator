@@ -36,18 +36,22 @@ router.post("/", (req, res) => {
         // newUser.markModified("test");
         newUser.save().then((user) => {
           // jwt.sign({ id: user.id }, config.get("jwtSecret"), (err, token) => {
-          jwt.sign({ id: user.id }, process.env.JWT_SECRET, (err, token) => {
-            if (err) throw err;
-            res.json({
-              token,
-              user: {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                stats: user.stats,
-              },
-            });
-          });
+          jwt.sign(
+            { id: user.id },
+            (config?.get('jwtSecret') || process.env.JWT_SECRET ),
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                user: {
+                  id: user.id,
+                  name: user.name,
+                  email: user.email,
+                  stats: user.stats,
+                },
+              });
+            }
+          );
         });
       });
     });
