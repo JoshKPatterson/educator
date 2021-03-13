@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 
 // Import Redux
 import { connect } from "react-redux";
-import {
-  updateUserData,
-  clearActivity,
-} from "../../actions/activityActions";
+import { updateUserData, clearActivity } from "../../actions/activityActions";
+import { loadUser } from "../../actions/authActions";
 
 // Import Components
 import Header from "../smallParts/Header";
@@ -14,18 +12,20 @@ import MainCard from "../smallParts/MainCard";
 import Title from "../smallParts/Title";
 import ReturnToMenu from "../smallParts/ReturnToMenu";
 
+// Results Component
 const Results = (props) => {
+  // State Setup
   const [name, setName] = useState(null);
   const [score, setScore] = useState(null);
   const [questionCount, setQuestionCount] = useState(null);
 
+  // Immediately Set State Values To Redux Values
   useEffect(() => {
     setName(props.activity.activityName);
     setScore(props.activity.score);
     setQuestionCount(props.activity.questionCount);
-    // post results to database
 
-    // create object with data to be posted
+    // Create Data Object To Be Posted
     const data = {
       genre: props.activity.genre,
       score: Math.round(
@@ -37,9 +37,13 @@ const Results = (props) => {
 
     console.log(data);
 
-    // attempt to post
+    // Attempt To Post
     props.updateUserData(data);
+
+    // Clear Redux After Post
     props.clearActivity();
+
+    props.loadUser();
   }, []);
 
   return (
@@ -63,6 +67,8 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { updateUserData, clearActivity })(
-  Results
-);
+export default connect(mapStateToProps, {
+  updateUserData,
+  clearActivity,
+  loadUser,
+})(Results);
