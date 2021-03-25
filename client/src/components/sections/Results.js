@@ -43,6 +43,7 @@ const Results = (props) => {
     // Clear Redux After Post
     props.clearActivity();
 
+    // Reload User To Update Profile Information
     props.loadUser();
   }, []);
 

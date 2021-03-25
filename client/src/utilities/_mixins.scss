@@ -20,3 +20,9 @@
 @mixin margin-under-bc-item {
   margin-bottom: 1rem;
 }
+
+@mixin flex-1-1-auto {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}

@@ -13,3 +13,4 @@ export const INCREMENT_SCORE = "INCREMENT_SCORE";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_FAIL = "UPDATE_FAIL";
 export const CLEAR_ACTIVITY = "CLEAR_ACTIVITY";
+export const USER_UPDATE = "USER_UPDATE";

@@ -3,7 +3,7 @@ import React from "react";
 
 // Import Redux
 import { connect } from "react-redux";
-import { setActivity } from "../../actions/activityActions";
+import { setActivity, clearActivity } from "../../actions/activityActions";
 
 // Import Routing
 import { Redirect, Link } from "react-router-dom";
@@ -38,7 +38,7 @@ const QuestionNumSelector = (props) => {
         <ButtonContainer>
           {questions.map((num) => {
             return (
-              <Button>
+              <Button customClass='listButton'>
                 <Link to="/activity" onClick={() => handleClick(num)}>
                   {num}
                 </Link>
@@ -46,7 +46,7 @@ const QuestionNumSelector = (props) => {
             );
           })}
         </ButtonContainer>
-        <ReturnToMenu />
+        <ReturnToMenu action={() => props.clearActivity()} />
       </div>
     </MainCard>
   );
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => ({
   activity: state.activity,
 });
 
-export default connect(mapStateToProps, { setActivity })(QuestionNumSelector);
+export default connect(mapStateToProps, { setActivity, clearActivity })(QuestionNumSelector);

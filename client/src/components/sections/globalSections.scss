@@ -7,8 +7,9 @@ Directory
 3. Main Menu
 4. Math
 5. Profile
-6. Results
-7. Section Navigator
+6. Question Number Selector
+7. Results
+8. Section Navigator
 **********************************
 */
 
@@ -18,6 +19,10 @@ Directory
 @import "../../utilities/variables";
 
 // 0. Global
+
+.listButton {
+  @include margin-under-bc-item;
+}
 
 // 1. Activity
 
@@ -82,9 +87,7 @@ Directory
 }
 
 .profile__body {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  @include flex-1-1-auto;
   overflow-y: auto;
   margin: 0.1rem 0 0.2rem 0;
 }
@@ -93,7 +96,14 @@ h2 span {
   color: $secondaryColor;
 }
 
-// 6. Results
+// 6. Question Number Selector
+
+.questionNumSelector {
+  @include full-hw;
+  @include all-center-with-column;
+}
+
+// 7. Results
 
 .results {
   @include full-hw;
@@ -103,9 +113,7 @@ h2 span {
 }
 
 .results__container {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  @include flex-1-1-auto;
   justify-content: center;
   @include horizontal-center;
 }
@@ -116,7 +124,7 @@ h2 span {
   font-size: 1.5rem;
 }
 
-// 7. Section Navigator
+// 8. Section Navigator
 
 .sectionNavigator {
   @include full-hw;

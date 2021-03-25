@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // Import Components
 import Button from "./Button";
 
-const ReturnToMenu = () => {
+const ReturnToMenu = ({action}) => {
   return (
     <div className='returnToMenu__container'>
-      <Button className="returnToMenu__button">
+      <Button className="returnToMenu__button" action={action}>
         <Link to='/'>Return To Menu</Link>
       </Button>
     </div>

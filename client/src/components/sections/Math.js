@@ -49,7 +49,7 @@ const Math = ({ setActivity }) => {
         <Title />
         <Header sectionName="Math" />
         <ButtonContainer>
-          <Button customClass="math__button">
+          <Button customClass="listButton">
             <Link
               to="/questioncount"
               onClick={() => setActivity(activities.addition)}
@@ -57,7 +57,7 @@ const Math = ({ setActivity }) => {
               Addition
             </Link>
           </Button>
-          <Button customClass="math__button">
+          <Button customClass="listButton">
             <Link
               to="/questioncount"
               onClick={() => setActivity(activities.subtraction)}
@@ -65,7 +65,7 @@ const Math = ({ setActivity }) => {
               Subtraction
             </Link>
           </Button>
-          <Button customClass="math__button">
+          <Button customClass="listButton">
             <Link
               to="/questioncount"
               onClick={() => setActivity(activities.timesTables)}
@@ -73,7 +73,7 @@ const Math = ({ setActivity }) => {
               Times Tables
             </Link>
           </Button>
-          <Button customClass="math__button">
+          <Button customClass="listButton">
             <Link
               to="/questioncount"
               onClick={() => setActivity(activities.division)}

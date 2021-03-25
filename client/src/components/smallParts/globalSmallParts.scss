@@ -7,10 +7,9 @@ Directory
 3. Chart
 4. Header
 5. Main Card
-6. Menu Button
-7. Return To Menu
-8. Text Input
-9. Title
+6. Return To Menu
+7. Text Input
+8. Title
 **********************************
 */
 
@@ -98,9 +97,7 @@ Directory
   position: relative;
 }
 
-// 6. Menu Button
-
-// 7. Return To Menu
+// 6. Return To Menu
 
 .returnToMenu__container {
   display: flex;
@@ -110,64 +107,70 @@ Directory
   @include margin-under-bc-item;
 }
 
-// 8. Text Input
+// 7. Text Input
 
-.form__group {
+.textInput {
   position: relative;
   margin-bottom: 2rem;
   padding: 15px 0 0;
   margin-top: 10px;
   font-family: $mainFont;
-}
 
-.form__textInput {
-  color: $textColor;
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 3px solid $mainColor;
-  outline: 0;
-  font-size: 1.3rem;
-  padding: 7px 0;
-  transition: border-color 0.2s;
-  &::placeholder {
-    color: transparent;
-  }
-  &:placeholder-shown ~ .form__label {
+  input {
+    color: $textColor;
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 3px solid $mainColor;
+    outline: 0;
     font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
+    padding: 7px 0;
+    transition: border-color 0.2s;
+    padding-bottom: 6px;  
+    border-width: 3px;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:placeholder-shown ~ label {
+      font-size: 1.3rem;
+      cursor: text;
+      top: 20px;
+    }
+
+    &:focus {
+
+      ~ label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 1rem;
+      color: $mainColor;
+      font-weight: bold;    
+      }
+    }
+
+    &:required,&:invalid { 
+      box-shadow:none; 
+    }
   }
-  &:focus {
-    ~ .form__label {
+  
+  label {
     position: absolute;
     top: 0;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: $mainColor;
-    font-weight: bold;    
-    }
-    padding-bottom: 6px;  
-  // font-weight: bold;
-  border-width: 3px;
-  }
-  &:required,&:invalid { 
-    box-shadow:none; 
+    font-weight: bold;
+    color: $textColor;
   }
 }
 
-.form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  font-weight: bold;
-  color: $textColor;
-}
 
-// 9. Title
+
+// 8. Title
 
 .title {
   font-family: $titleFont;

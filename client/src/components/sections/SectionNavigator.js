@@ -3,6 +3,7 @@ import React from "react";
 
 // Import Components
 import Title from "../smallParts/Title";
+import Header from "../smallParts/Header";
 import Button from "../smallParts/Button";
 import MainCard from "../smallParts/MainCard";
 import ButtonContainer from "../smallParts/ButtonContainer";
@@ -17,11 +18,12 @@ const SectionNavigator = () => {
     <MainCard>
       <div className="sectionNavigator">
         <Title />
+        <Header sectionName="Sections" />
         <ButtonContainer>
-          <Button customClass='sectionNavigator__button'>
+          <Button customClass="listButton">
             <Link to="/math">Math</Link>
           </Button>
-          <Button customClass='sectionNavigator__button'>
+          <Button customClass="listButton">
             <Link to="/geography">Geography</Link>
           </Button>
         </ButtonContainer>

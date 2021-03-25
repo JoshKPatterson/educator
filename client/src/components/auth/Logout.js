@@ -43,6 +43,7 @@ const Logout = (props) => {
         <Title />
         <Header sectionName="Logout" />
         <ButtonContainer>
+          <h3>Are you sure?</h3>
           <Button action={logout}>
             <p>Logout</p>
           </Button>
