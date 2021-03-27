@@ -54,6 +54,12 @@ Directory
   }
 }
 
+@media (min-width: 600px) {
+  .buttonProp {
+    min-width: 14rem;
+  }
+}
+
 // 2. Button Container
 
 .buttonContainer {
@@ -62,7 +68,6 @@ Directory
   flex: 1 1 auto;
   justify-content: center;
   @include horizontal-center;
-  
 }
 
 // 3. Chart
@@ -126,7 +131,7 @@ Directory
     font-size: 1.3rem;
     padding: 7px 0;
     transition: border-color 0.2s;
-    padding-bottom: 6px;  
+    padding-bottom: 6px;
     border-width: 3px;
 
     &::placeholder {
@@ -140,23 +145,23 @@ Directory
     }
 
     &:focus {
-
       ~ label {
-      position: absolute;
-      top: 0;
-      display: block;
-      transition: 0.2s;
-      font-size: 1rem;
-      color: $mainColor;
-      font-weight: bold;    
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: $mainColor;
+        font-weight: bold;
       }
     }
 
-    &:required,&:invalid { 
-      box-shadow:none; 
+    &:required,
+    &:invalid {
+      box-shadow: none;
     }
   }
-  
+
   label {
     position: absolute;
     top: 0;
@@ -167,8 +172,6 @@ Directory
     color: $textColor;
   }
 }
-
-
 
 // 8. Title
 
