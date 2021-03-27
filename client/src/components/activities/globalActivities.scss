@@ -75,6 +75,8 @@ Directory
   img {
     width: 100%;
     margin-bottom: 0.33rem;
+    max-width: 660px;
+    margin: auto;
   }
 }
 
@@ -86,7 +88,7 @@ Directory
 }
 
 .buttonContainer {
-  .states__answer__button { 
+  .states__answer__button {
     margin-bottom: 2vh;
     p {
       padding: 0.33rem 3rem;
