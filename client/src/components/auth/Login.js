@@ -82,6 +82,16 @@ const Login = (props) => {
     props.login(user);
   };
 
+  // Guest Login
+  const guestSignIn = () => {
+    const user = {
+      email: 'guest',
+      password: 'guest'
+    };
+
+    props.login(user);
+  }
+
   // Content For Component
   // Written Outside Return Statement For Clarity With Auth Check
   const content = () => {
@@ -113,9 +123,12 @@ const Login = (props) => {
             <Button type="submit"><p>Login</p></Button>
             
           </form>
-          <Button>
+          <Button customClass={'register__button'}>
               <Link to="/register">New User</Link>
             </Button>
+          <Button action={guestSignIn}>
+            <p>Sign In As Guest</p>
+          </Button>
             </ButtonContainer>
       </div>
     );
