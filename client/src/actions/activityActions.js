@@ -33,13 +33,6 @@ export const incrementScore = () => {
 // Update User Stats After Activity
 export const updateUserData = ({ genre, score, id }) => (dispatch, getState) => {
 
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
-
   // Request Body
   const body = JSON.stringify({ genre, score, id });
 

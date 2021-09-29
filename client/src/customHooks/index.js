@@ -1,5 +1,5 @@
 // Import React
-import { React, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 // Used To Cache Previous Error For Future Comparison
 export const usePrevious = (value) => {

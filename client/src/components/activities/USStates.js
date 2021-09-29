@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { incrementScore } from "../../actions/activityActions";
 
 // Import Routing
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 // Import Components
 import Button from "../smallParts/Button";
@@ -139,7 +139,7 @@ const USStates = (props) => {
             {questionNum + 1}/{questionList.length}
           </span>
         </h2>
-        <img src={currentQuestion.link} />
+        <img src={currentQuestion.link} alt='random_us_state'/>
         <ButtonContainer>
           <Button
             customClass="states__answer__button"

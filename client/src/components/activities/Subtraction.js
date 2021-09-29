@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { incrementScore } from "../../actions/activityActions";
 
 // Import Routing
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 // Import Components
 import Button from "../smallParts/Button";

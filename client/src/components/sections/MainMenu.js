@@ -1,11 +1,11 @@
 // Import React
-import React, { useState } from "react";
+import React from "react";
 
 // Import Redux
 import { connect } from "react-redux";
 
 // Import Routing
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Import Components
 import Header from "../smallParts/Header";

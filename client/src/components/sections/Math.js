@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { setActivity } from "../../actions/activityActions";
 
 // Import Routing
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Import Components
 import Header from "../smallParts/Header";

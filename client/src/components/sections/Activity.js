@@ -5,7 +5,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 // Import Components
-import Header from "../smallParts/Header";
 import MainCard from "../smallParts/MainCard";
 import Title from "../smallParts/Title";
 import USStates from "../activities/USStates";

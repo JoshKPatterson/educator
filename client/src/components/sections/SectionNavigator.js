@@ -10,7 +10,7 @@ import ButtonContainer from "../smallParts/ButtonContainer";
 import ReturnToMenu from "../smallParts/ReturnToMenu";
 
 // Import Routing
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Section Navigator Component
 const SectionNavigator = () => {

@@ -19,7 +19,6 @@ const Profile = (props) => {
     datasets: [
       {
         label: "Time Spent",
-        // data: [0, 0, 0],
         data: [
           user.stats.sections.math.activities_attempted,
           user.stats.sections.geography.activities_attempted
@@ -33,7 +32,6 @@ const Profile = (props) => {
     ],
   };
 
-  const dataCheck = data.datasets[0];
 
   // user.stats.sections.math.average_grade
   const averages = {
@@ -52,7 +50,6 @@ const Profile = (props) => {
         {data.datasets[0].data.reduce((a, b) => a + b, 0) ? (
           <Chart data={data} />
         ) : null}
-        {/* <Chart data={data} /> */}
         <h3>Sections</h3>
         <h4>Math</h4>
         <p>
